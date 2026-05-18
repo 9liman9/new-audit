@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
+<meta name="robots" content="noindex, nofollow" />
 <meta charset="utf-8" />
 <title>new audit · برنامج التدقيق · standalone</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
@@ -1632,6 +1633,43 @@ table.t tr.mapped:hover { background: #C7DFD0; }
 </style>
 </head>
 <body>
+<div id="na-gate" style="position:fixed;inset:0;z-index:2147483647;background:#1F4636;display:flex;align-items:center;justify-content:center;font-family:'Amiri','Noto Naskh Arabic',serif;" dir="rtl">
+  <form id="na-gate-form" style="background:#F4EFE3;padding:48px 40px;border-radius:8px;text-align:center;min-width:320px;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+    <h1 style="margin:0 0 4px 0;font-size:32px;color:#1F4636;font-weight:700;">new audit</h1>
+    <p style="margin:0 0 28px 0;font-size:13px;color:#786E54;font-family:'IBM Plex Sans Arabic',sans-serif;">نسخة قيد التطوير</p>
+    <input type="password" id="na-gate-input" placeholder="كلمة السر" autocomplete="off" autofocus style="display:block;width:100%;padding:12px 16px;margin-bottom:12px;border:1px solid #D9CFB6;border-radius:4px;font-size:15px;text-align:center;font-family:inherit;background:#FCF8EE;color:#241D14;box-sizing:border-box;" />
+    <button type="submit" style="display:block;width:100%;padding:12px;background:#1F4636;color:#F4EFE3;border:none;border-radius:4px;font-size:15px;font-family:inherit;cursor:pointer;font-weight:600;">دخول</button>
+    <p id="na-gate-err" style="margin:14px 0 0 0;font-size:12px;color:#A23A2E;visibility:hidden;font-family:'IBM Plex Sans Arabic',sans-serif;">كلمة السر غير صحيحة</p>
+  </form>
+</div>
+<script>
+(function(){
+  // Passphrase gate. Change passphrase: replace HASH with new sha256(passphrase).
+  const HASH = "400e631b5b292aa42fbabddf8a186f9dbb0f08d9e94f39c706ca845209b52e13";
+  async function sha256(s){
+    const b = new TextEncoder().encode(s);
+    const h = await crypto.subtle.digest('SHA-256', b);
+    return Array.from(new Uint8Array(h)).map(x => x.toString(16).padStart(2,'0')).join('');
+  }
+  function init(){
+    const gate = document.getElementById('na-gate');
+    const form = document.getElementById('na-gate-form');
+    const input = document.getElementById('na-gate-input');
+    const err = document.getElementById('na-gate-err');
+    if (!gate || !form) return;
+    if (sessionStorage.getItem('na-pass') === HASH) { gate.remove(); return; }
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      const h = await sha256(input.value);
+      if (h === HASH) { sessionStorage.setItem('na-pass', h); gate.remove(); }
+      else { err.style.visibility = 'visible'; input.value = ''; input.focus(); }
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+
 <div id="topbar" class="topbar hidden"></div>
 <main id="app"></main>
 <div id="drawerHost"></div>
