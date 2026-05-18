@@ -1291,6 +1291,40 @@ table.t tr.mapped:hover { background: #C7DFD0; }
   font-family: "IBM Plex Mono", monospace;
   letter-spacing: 0.05em;
 }
+.login-brand .login-eyebrow {
+  font-size: 13px;
+  color: var(--ink-3);
+  font-family: "Noto Naskh Arabic", "IBM Plex Sans Arabic", sans-serif;
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+.login-brand .login-wordmark {
+  font-family: "Amiri", "Noto Naskh Arabic", serif;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0 0 8px 0;
+  color: var(--brand);
+  letter-spacing: -0.01em;
+  direction: ltr;
+}
+.login-hint {
+  font-size: 12px;
+  color: var(--ink-mute);
+  text-align: center;
+  margin-top: 14px;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  line-height: 1.6;
+}
+.login-footer {
+  text-align: center;
+  font-size: 12px;
+  color: var(--ink-mute);
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-family: "Noto Naskh Arabic", sans-serif;
+}
 
 /* ============================================================
    CLIENT CARDS
@@ -1313,6 +1347,221 @@ table.t tr.mapped:hover { background: #C7DFD0; }
   font-family: "Amiri", serif;
   font-size: 28px;
   color: var(--gold-deep);
+}
+
+/* ============================================================
+   DASHBOARD (clients screen v4)
+   ============================================================ */
+.dashboard-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  margin-bottom: 18px;
+}
+.dashboard-firm .firm-name {
+  font-family: "Amiri", "Noto Naskh Arabic", serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.dashboard-firm .firm-sub {
+  font-size: 13px;
+  color: var(--ink-3);
+  margin-top: 4px;
+  font-family: "Noto Naskh Arabic", sans-serif;
+}
+.dashboard-filter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.dashboard-filter label {
+  font-size: 13px;
+  color: var(--ink-3);
+  font-weight: 600;
+  font-family: "Noto Naskh Arabic", sans-serif;
+}
+.dashboard-filter select {
+  padding: 9px 12px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  min-width: 180px;
+}
+.dashboard-filter select:focus {
+  outline: 2px solid var(--brand-tint);
+  border-color: var(--brand);
+}
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  text-align: center;
+}
+.stat-card .stat-num {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--brand);
+  line-height: 1.1;
+}
+.stat-card .stat-label {
+  font-size: 12px;
+  color: var(--ink-3);
+  margin-top: 6px;
+  font-family: "Noto Naskh Arabic", sans-serif;
+}
+
+@media (max-width: 760px) {
+  .dashboard-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 14px 16px;
+  }
+  .dashboard-firm { text-align: center; }
+  .dashboard-filter { justify-content: center; }
+  .dashboard-filter select { flex: 1; min-width: 0; }
+  .dashboard-stats { gap: 8px; }
+  .stat-card { padding: 12px 8px; }
+  .stat-card .stat-num { font-size: 22px; }
+  .stat-card .stat-label { font-size: 11px; }
+}
+
+/* ============================================================
+   CLIENT + AUDITOR SETUP FORM (v4)
+   ============================================================ */
+.setup-section {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  margin-bottom: 16px;
+}
+.setup-section-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+.setup-section-num {
+  display: inline-grid;
+  place-items: center;
+  width: 36px; height: 36px;
+  background: var(--brand);
+  color: var(--surface);
+  border-radius: 50%;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 15px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.setup-section-head h2 {
+  font-size: 19px;
+  margin: 0 0 4px 0;
+  color: var(--ink);
+  font-family: "Amiri", "Noto Naskh Arabic", serif;
+}
+.setup-section-head p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+.setup-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px 16px;
+}
+.setup-grid .field { grid-column: span 1; }
+.setup-grid .field.col-2 { grid-column: span 2; }
+.setup-grid .field.col-3 { grid-column: span 3; }
+
+@media (max-width: 760px) {
+  .setup-grid { grid-template-columns: 1fr; }
+  .setup-grid .field.col-2,
+  .setup-grid .field.col-3 { grid-column: span 1; }
+  .setup-section { padding: 20px 18px; }
+  .setup-section-head { gap: 12px; margin-bottom: 16px; padding-bottom: 12px; }
+  .setup-section-num { width: 32px; height: 32px; font-size: 14px; }
+  .setup-section-head h2 { font-size: 17px; }
+}
+
+/* ============================================================
+   V4 PLACEHOLDER CARDS (Pass-2 sub-sections)
+   ============================================================ */
+.v4-placeholder {
+  background: linear-gradient(135deg, var(--gold-soft) 0%, var(--surface) 100%);
+  border: 1px dashed var(--gold-deep);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  margin: 4px 0;
+}
+.v4-ph-badge {
+  display: inline-block;
+  background: var(--gold-deep);
+  color: var(--surface);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+}
+.v4-placeholder h3 {
+  font-family: "Amiri", serif;
+  font-size: 20px;
+  color: var(--ink);
+  margin: 0 0 8px 0;
+}
+.v4-placeholder p {
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.7;
+  margin: 0 0 12px 0;
+}
+.v4-ph-list {
+  margin: 8px 0 12px 0;
+  padding-inline-start: 22px;
+  font-size: 13.5px;
+  color: var(--ink-2);
+  line-height: 1.8;
+}
+.v4-ph-list li::marker { color: var(--gold-deep); }
+.v4-ph-hint {
+  font-size: 12.5px;
+  color: var(--ink-3);
+  margin-top: 14px !important;
+  padding-top: 12px;
+  border-top: 1px solid var(--gold-soft);
+  font-style: italic;
+}
+.v4-ph-status {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
 }
 
 .client-grid {
@@ -1713,13 +1962,17 @@ const AREAS = [
 ];
 const AREAS_BY_CODE = Object.fromEntries(AREAS.map(a => [a.code, a]));
 
+/* v4: 8 sub-sections per Yazan's Excel #1 (post-meeting redesign).
+   Materiality + company_risk moved to Execution phase. Order is the canonical tree. */
 const PLANNING_SECTIONS = [
-  { key: "acceptance",    title: "مرحلة قبول العميل",                    isa: "ISA 210 · ISA 220",  desc: "تقييم نزاهة العميل، الاستقلالية، القدرة والموارد، المخاطر المهنية." },
-  { key: "understanding", title: "مرحلة فهم المنشأة",                     isa: "ISA 315",            desc: "نشاط المنشأة، الإطار القانوني، الهيكل التنظيمي، التكنولوجيا، السوق." },
-  { key: "ic",            title: "مرحلة تأكيد إجراءات الرقابة الداخلية",  isa: "ISA 315",            desc: "بيئة الرقابة، تقييم المخاطر، أنشطة الرقابة، المعلومات والاتصال، المتابعة." },
-  { key: "risk",          title: "مرحلة المخاطر",                        isa: "ISA 315 · ISA 330",   desc: "تحديد المخاطر على مستوى التأكيدات، تصنيفها، الاستجابة لها." },
-  { key: "materiality",   title: "مرحلة الأهمية النسبية",                  isa: "ISA 320",            desc: "احتساب الأهمية النسبية على مستوى القوائم وعلى مستوى البند، تحديد الأخطاء الهامشية." },
-  { key: "company_risk",  title: "مرحلة تقييم مخاطر الشركة",               isa: "ISA 315",            desc: "تقييم شامل لمخاطر الشركة الكلية، معامل المخاطر، ساعات العمل التقديرية." },
+  { key: "acceptance",      title: "قبول العميل",                    isa: "ISA 210 · ISA 220",  desc: "تقييم نزاهة العميل، الاستقلالية، القدرة والموارد، المخاطر المهنية." },
+  { key: "understanding",   title: "فهم نشاط المنشأة",                isa: "ISA 315",            desc: "نشاط المنشأة، الإطار القانوني، الهيكل التنظيمي، التكنولوجيا، السوق." },
+  { key: "ic",              title: "تقييم الرقابة الداخلية",          isa: "ISA 315",            desc: "بيئة الرقابة، أنشطة الرقابة، المعلومات والاتصال، المتابعة." },
+  { key: "framework",       title: "الإطار المحاسبي والسياسات",       isa: "ISA 315",            desc: "أسس إعداد القوائم المالية، السياسات المحاسبية، التقديرات الجوهرية.", v4Placeholder: "framework" },
+  { key: "engagement",      title: "خطاب الإرتباط والتعميد",          isa: "ISA 210",            desc: "تأكيد قبول الارتباط: تاريخ الخطاب، اسم الشركة، السنة المالية، التواقيع.", v4Placeholder: "engagement" },
+  { key: "minutes",         title: "محضر الإجتماع مع العميل",          isa: "ISA 300",            desc: "توثيق الاجتماع الافتتاحي: النزاهة، الأطراف ذات العلاقة، مجلس الإدارة، الذمم، الموظفين.", v4Placeholder: "minutes" },
+  { key: "permanent",       title: "الملف الدائم",                    isa: "ISA 230",            desc: "وثائق التأسيس: السجل التجاري، عقد التأسيس، الشهادة الضريبية، التراخيص.", v4Placeholder: "permanent" },
+  { key: "risk_assessment", title: "تقييم المخاطر",                   isa: "ISA 315 · ISA 330",  desc: "مصفوفة المخاطر بحسب فئة الحسابات — تستكمل تلقائياً من تصنيف ميزان المراجعة.", v4Placeholder: "risk_assessment", autoFromTB: true },
 ];
 
 const SIGNOFF_LEVELS = [
@@ -1760,7 +2013,7 @@ const DEFAULT_STATE = {
   clients: [],                         // [{ id, name, crNum, partners, legalForm, fy, currency, createdAt }]
   currentClientId: null,
   engagements: {},                     // { [clientId]: engagement }
-  ui: { lang: "ar" },
+  ui: { lang: "ar", dashboardYear: "all" },  // dashboardYear: "all" | "2025" | "2026" | ...
 };
 const DEFAULT_ENGAGEMENT = () => ({
   tb: [],                              // [{code, name, dr, cr, area?}]
@@ -2055,22 +2308,23 @@ function viewLogin() {
   <div class="screen login-screen">
     <div class="login-card">
       <div class="login-brand">
-        <div class="seal-lg">N</div>
-        <h1>برنامج التدقيق <span class="accent">(new audit)</span></h1>
-        <div class="subtitle">نسخة تجريبية تفاعلية · 2026</div>
+        <div class="login-eyebrow">برنامج التدقيق</div>
+        <h1 class="login-wordmark">new audit</h1>
+        <div class="subtitle">Cloud Audit Platform · v0.4</div>
       </div>
       <form onsubmit="handleLogin(event)" novalidate>
         <div class="field">
           <label for="li-user">اسم المستخدم</label>
-          <input id="li-user" type="text" autocomplete="username" required placeholder="yazan.alodhat" />
+          <input id="li-user" type="text" autocomplete="username" required value="yazan@newaudit" />
         </div>
         <div class="field">
           <label for="li-pass">كلمة المرور</label>
-          <input id="li-pass" type="password" autocomplete="current-password" required placeholder="••••••••" />
-          <div class="hint">للعرض التجريبي: أدخل أي اسم وكلمة مرور.</div>
+          <input id="li-pass" type="password" autocomplete="current-password" required value="demo2026" />
         </div>
-        <button class="btn primary block" type="submit">تسجيل الدخول</button>
+        <button class="btn primary block" type="submit">دخول</button>
+        <div class="login-hint">نسخة تجريبية: اضغط دخول مباشرة — بيانات الدخول فقط للعرض.</div>
       </form>
+      <div class="login-footer">مكتب يزن العودات للتدقيق والمراجعة</div>
     </div>
   </div>`;
 }
@@ -2080,7 +2334,7 @@ function handleLogin(ev) {
   const u = document.getElementById("li-user").value.trim() || "auditor";
   state.user = { username: u, signedInAt: nowISO() };
   saveState();
-  navigate(state.auditor ? "/clients" : "/auditor");
+  navigate("/clients");
 }
 
 /* ============================================================
@@ -2132,10 +2386,30 @@ function handleAuditorSave(ev) {
 }
 
 /* ============================================================
-   VIEW — CLIENTS LIST
+   VIEW — DASHBOARD (clients list + year filter + firm bar)
    ============================================================ */
 function viewClients() {
-  const cs = state.clients;
+  const dashYear = state.ui?.dashboardYear || "all";
+  const allClients = state.clients;
+  const cs = dashYear === "all" ? allClients : allClients.filter(c => String(c.fy) === dashYear);
+
+  // Compute available years (current + previous + any FY values from clients)
+  const thisYear = new Date().getFullYear();
+  const years = new Set([String(thisYear), String(thisYear - 1)]);
+  allClients.forEach(c => { if (c.fy) years.add(String(c.fy)); });
+  const sortedYears = Array.from(years).sort((a, b) => Number(b) - Number(a));
+
+  // Stats
+  const totalCount = allClients.length;
+  const inProgress = allClients.filter(c => {
+    const eng = state.engagements[c.id]; if (!eng) return false;
+    return !eng.locked && ((eng.tb && eng.tb.length) || Object.values(eng.planning || {}).some(o => Object.keys(o || {}).length));
+  }).length;
+  const lockedCount = allClients.filter(c => state.engagements[c.id]?.locked).length;
+
+  const firmName = esc(state.auditor?.firm || "مكتب التدقيق");
+  const firmSub = state.auditor?.name ? `${esc(state.auditor.name)}${state.auditor.position ? " · " + esc(state.auditor.position) : ""}` : "";
+
   const list = cs.length ? `
     <div class="client-grid">
       ${cs.map(c => {
@@ -2162,6 +2436,15 @@ function viewClients() {
           </div>
         </button>`;
       }).join("")}
+    </div>` : (allClients.length ? `
+    <div class="empty-state">
+      <div class="icon">∅</div>
+      <h2>لا يوجد عملاء للسنة المالية ${esc(dashYear)}</h2>
+      <p class="subtle">جرّب اختيار سنة مختلفة أو عرض جميع السنوات.</p>
+      <div class="toolbar" style="justify-content:center; margin-top: 4px;">
+        <button class="btn ghost" onclick="setDashboardYear('all')">عرض جميع السنوات</button>
+        <button class="btn primary" onclick="navigate('/clients/new')">إضافة عميل جديد</button>
+      </div>
     </div>` : `
     <div class="empty-state">
       <div class="icon">+</div>
@@ -2171,22 +2454,52 @@ function viewClients() {
         <button class="btn primary" onclick="navigate('/clients/new')">إضافة عميل جديد</button>
         <button class="btn gold" onclick="loadSampleClient()">تحميل عميل تجريبي</button>
       </div>
-    </div>`;
+    </div>`);
 
   return `
   <div class="screen"><div class="wrap">
+    <div class="dashboard-bar">
+      <div class="dashboard-firm">
+        <div class="firm-name">${firmName}</div>
+        ${firmSub ? `<div class="firm-sub">${firmSub}</div>` : ""}
+      </div>
+      <div class="dashboard-filter">
+        <label for="year-filter">السنة المالية</label>
+        <select id="year-filter" onchange="setDashboardYear(this.value)">
+          <option value="all" ${dashYear === "all" ? "selected" : ""}>جميع السنوات</option>
+          ${sortedYears.map(y => {
+            const tag = y === String(thisYear) ? " · الحالية" : y === String(thisYear - 1) ? " · السابقة" : "";
+            return `<option value="${esc(y)}" ${dashYear === y ? "selected" : ""}>${esc(y)}${tag}</option>`;
+          }).join("")}
+        </select>
+      </div>
+    </div>
+
+    <div class="dashboard-stats">
+      <div class="stat-card"><div class="stat-num">${totalCount}</div><div class="stat-label">إجمالي العملاء</div></div>
+      <div class="stat-card"><div class="stat-num">${inProgress}</div><div class="stat-label">قيد العمل</div></div>
+      <div class="stat-card"><div class="stat-num">${lockedCount}</div><div class="stat-label">ملفات مقفلة</div></div>
+    </div>
+
     <div class="section-title">
-      <h1>العملاء</h1>
+      <h1>العملاء${dashYear !== "all" ? ` · ${esc(dashYear)}` : ""}</h1>
       ${cs.length ? `<span class="count">${cs.length}</span>` : ``}
       <div class="grow"></div>
-      ${cs.length ? `
+      ${allClients.length ? `
         <button class="btn ghost" onclick="loadSampleClient()">+ عميل تجريبي</button>
         <button class="btn primary" onclick="navigate('/clients/new')">إضافة عميل جديد</button>
       ` : ""}
     </div>
-    <p class="subtle mb-20">${esc(state.auditor?.firm || "مكتب التدقيق")}</p>
+
     ${list}
   </div></div>`;
+}
+
+function setDashboardYear(year) {
+  if (!state.ui) state.ui = { lang: "ar", dashboardYear: "all" };
+  state.ui.dashboardYear = year;
+  saveState();
+  render();
 }
 
 function openClient(id) { state.currentClientId = id; saveState(); navigate("/c/" + id); }
@@ -2298,76 +2611,218 @@ function seedRealisticDemo(eng) {
 }
 
 /* ============================================================
-   VIEW — NEW CLIENT FORM
+   VIEW — CLIENT + AUDITOR SETUP (merged screen, v4)
+   Replaces /auditor + /clients/new from v3.
    ============================================================ */
 function viewClientNew() {
+  const a = state.auditor || DEFAULT_AUDITOR;
+  const thisYear = new Date().getFullYear();
+  const fyDefault = String(thisYear - 1);
+  const fyStartDefault = `${fyDefault}-01-01`;
+  const fyEndDefault = `${fyDefault}-12-31`;
+  const fyPrevEndDefault = `${thisYear - 2}-12-31`;
   return `
-  <div class="screen"><div class="wrap" style="max-width: 760px;">
-    <div class="eyebrow mb-8">تعريف العميل</div>
-    <h1 class="mb-8">إضافة عميل جديد</h1>
-    <p class="subtle mb-20">البيانات التعريفية الأساسية. تستخدم في رأس كل ورقة عمل وفي القوائم النهائية.</p>
-    <div class="panel">
-      <div class="panel-body">
-        <form onsubmit="handleClientNew(event)">
+  <div class="screen"><div class="wrap" style="max-width: 880px;">
+    <div class="eyebrow mb-8">إضافة ملف جديد</div>
+    <h1 class="mb-8">تعريف العميل والمراجع</h1>
+    <p class="subtle mb-20">هذه البيانات تظهر على رأس كل ورقة عمل وفي جميع الخطابات والتقارير. عبّيها مرّة واحدة وتنزل تلقائياً في باقي البرنامج.</p>
+
+    <form onsubmit="handleClientNew(event)" novalidate>
+
+      <!-- =============== AUDITOR SECTION =============== -->
+      <div class="setup-section">
+        <div class="setup-section-head">
+          <span class="setup-section-num">١</span>
+          <div>
+            <h2>بيانات المراجع</h2>
+            <p class="subtle">${a.name ? "محفوظة من جلسة سابقة — عدّل إن لزم" : "تظهر مرة واحدة، ثم تستخدم تلقائياً في كل ورقة عمل."}</p>
+          </div>
+        </div>
+        <div class="setup-grid">
+          <div class="field col-2">
+            <label>اسم المراجع (المعد)</label>
+            <input name="auditorName" type="text" required placeholder="يزن العودات" value="${esc(a.name)}" />
+          </div>
           <div class="field">
-            <label>اسم الشركة</label>
+            <label>المنصب</label>
+            <input name="auditorPosition" type="text" required placeholder="شريك مدقق" value="${esc(a.position)}" />
+          </div>
+          <div class="field col-3">
+            <label>اسم المكتب</label>
+            <input name="auditorFirm" type="text" required placeholder="مكتب يزن العودات للتدقيق والمراجعة" value="${esc(a.firm)}" />
+          </div>
+        </div>
+      </div>
+
+      <!-- =============== CLIENT SECTION =============== -->
+      <div class="setup-section">
+        <div class="setup-section-head">
+          <span class="setup-section-num">٢</span>
+          <div>
+            <h2>بيانات العميل</h2>
+            <p class="subtle">مطابقة لعقد التأسيس والسجل التجاري.</p>
+          </div>
+        </div>
+        <div class="setup-grid">
+          <div class="field col-3">
+            <label>اسم الشركة (عربي)</label>
             <input name="name" type="text" required placeholder="مثال: شركة الفجر للمقاولات ذ.م.م" />
           </div>
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:14px;">
-            <div class="field">
-              <label>رقم السجل التجاري</label>
-              <input name="crNum" type="text" placeholder="21321231" />
-            </div>
-            <div class="field">
-              <label>السنة المالية</label>
-              <input name="fy" type="text" placeholder="2025" />
-            </div>
+          <div class="field col-3">
+            <label>اسم الشركة (إنجليزي)</label>
+            <input name="nameEN" type="text" placeholder="Al-Fajr Contracting LLC" dir="ltr" style="text-align:left;" />
+          </div>
+
+          <div class="field">
+            <label>رقم السجل التجاري</label>
+            <input name="crNum" type="text" placeholder="21321231" />
           </div>
           <div class="field">
-            <label>أسماء الشركاء</label>
-            <input name="partners" type="text" placeholder="فصل الأسماء بفاصلة" />
+            <label>طبيعة الشركة</label>
+            <select name="legalForm" required>
+              <option value="">— اختر —</option>
+              <option>ذ.م.م</option>
+              <option>شركة مساهمة قطرية</option>
+              <option>شركة تضامن</option>
+              <option>مؤسسة فردية</option>
+              <option>فرع شركة أجنبية</option>
+            </select>
           </div>
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:14px;">
-            <div class="field">
-              <label>طبيعة الشركة</label>
-              <select name="legalForm" required>
-                <option value="">— اختر —</option>
-                <option>ذ.م.م</option>
-                <option>شركة مساهمة</option>
-                <option>شركة تضامن</option>
-                <option>مؤسسة فردية</option>
-              </select>
-            </div>
-            <div class="field">
-              <label>عملة التدقيق</label>
-              <select name="currency" required>
-                <option value="">— اختر —</option>
-                <option>QAR</option>
-                <option>SAR</option>
-                <option>AED</option>
-                <option>USD</option>
-                <option>EUR</option>
-              </select>
-            </div>
+          <div class="field">
+            <label>رأس المال</label>
+            <input name="capital" type="text" placeholder="200,000 ر.ق" />
           </div>
-          <div class="toolbar mt-16">
-            <button class="btn primary" type="submit">حفظ وفتح ملف التدقيق</button>
-            <button class="btn ghost" type="button" onclick="navigate('/clients')">إلغاء</button>
+
+          <div class="field col-3">
+            <label>أسماء الشركاء / الملاك</label>
+            <input name="partners" type="text" placeholder="فصل الأسماء بفاصلة · حسب عقد التأسيس" />
           </div>
-        </form>
+
+          <div class="field col-2">
+            <label>المدير العام · الاسم</label>
+            <input name="gmName" type="text" placeholder="اسم المدير العام" />
+          </div>
+          <div class="field">
+            <label>المدير العام · الجوال</label>
+            <input name="gmPhone" type="text" placeholder="+974 ..." dir="ltr" style="text-align:left;" />
+          </div>
+
+          <div class="field col-2">
+            <label>المسؤول المالي · الاسم</label>
+            <input name="cfoName" type="text" placeholder="اسم المسؤول المالي" />
+          </div>
+          <div class="field">
+            <label>المسؤول المالي · الجوال</label>
+            <input name="cfoPhone" type="text" placeholder="+974 ..." dir="ltr" style="text-align:left;" />
+          </div>
+
+          <div class="field col-2">
+            <label>البريد الإلكتروني (تواصل رسمي)</label>
+            <input name="email" type="email" placeholder="finance@company.com.qa" dir="ltr" style="text-align:left;" />
+          </div>
+          <div class="field">
+            <label>المراجع السابق</label>
+            <input name="prevAuditor" type="text" placeholder="مكتب —" />
+          </div>
+
+          <div class="field col-3">
+            <label>المركز الرئيسي للشركة</label>
+            <input name="hqAddress" type="text" placeholder="الدوحة · ..." />
+          </div>
+        </div>
       </div>
-    </div>
+
+      <!-- =============== PERIODS SECTION =============== -->
+      <div class="setup-section">
+        <div class="setup-section-head">
+          <span class="setup-section-num">٣</span>
+          <div>
+            <h2>فترة التدقيق</h2>
+            <p class="subtle">السنة المالية الحالية وتاريخ نهاية السنة السابقة (للأرصدة الافتتاحية).</p>
+          </div>
+        </div>
+        <div class="setup-grid">
+          <div class="field">
+            <label>بداية السنة المالية</label>
+            <input name="fyStart" type="date" value="${fyStartDefault}" />
+          </div>
+          <div class="field">
+            <label>نهاية السنة المالية</label>
+            <input name="fyEnd" type="date" required value="${fyEndDefault}" />
+          </div>
+          <div class="field">
+            <label>نهاية السنة السابقة (للأرصدة الافتتاحية)</label>
+            <input name="fyPrevEnd" type="date" value="${fyPrevEndDefault}" />
+          </div>
+
+          <div class="field">
+            <label>عملة التدقيق</label>
+            <select name="currency" required>
+              <option value="">— اختر —</option>
+              <option selected>QAR</option>
+              <option>SAR</option>
+              <option>AED</option>
+              <option>USD</option>
+              <option>EUR</option>
+            </select>
+          </div>
+          <div class="field col-2">
+            <label>نموذج المراجعة المستخدم</label>
+            <select name="auditModel">
+              <option value="ISA-Full">المعايير الدولية للمراجعة (ISA) — الكامل</option>
+              <option value="ISA-SME">المعايير الدولية للمراجعة (ISA) — للمنشآت الصغيرة والمتوسطة</option>
+              <option value="GAAP-Qatar">المعايير المحلية القطرية</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="toolbar mt-16">
+        <button class="btn primary" type="submit">حفظ وفتح ملف التدقيق</button>
+        <button class="btn ghost" type="button" onclick="navigate('/clients')">إلغاء</button>
+      </div>
+    </form>
   </div></div>`;
 }
+
 function handleClientNew(ev) {
   ev.preventDefault();
   const f = ev.target;
+
+  // Save / refresh auditor profile (same form, both sides at once)
+  state.auditor = {
+    name:     f.auditorName.value.trim(),
+    position: f.auditorPosition.value.trim(),
+    firm:     f.auditorFirm.value.trim(),
+  };
+
+  // Derive a simple FY string (year of fyEnd) for backward compatibility with the dashboard year filter
+  const fyEnd = f.fyEnd.value;
+  const fyYear = fyEnd ? String(new Date(fyEnd).getFullYear()) : "";
+
   const id = uid("c");
   const client = {
-    id, name: f.name.value.trim(), crNum: f.crNum.value.trim(),
-    partners: f.partners.value.trim(), legalForm: f.legalForm.value,
-    fy: f.fy.value.trim(), currency: f.currency.value,
-    createdAt: nowISO(),
+    id,
+    name:        f.name.value.trim(),
+    nameEN:      f.nameEN.value.trim(),
+    crNum:       f.crNum.value.trim(),
+    legalForm:   f.legalForm.value,
+    capital:     f.capital.value.trim(),
+    partners:    f.partners.value.trim(),
+    gmName:      f.gmName.value.trim(),
+    gmPhone:     f.gmPhone.value.trim(),
+    cfoName:     f.cfoName.value.trim(),
+    cfoPhone:    f.cfoPhone.value.trim(),
+    email:       f.email.value.trim(),
+    prevAuditor: f.prevAuditor.value.trim(),
+    hqAddress:   f.hqAddress.value.trim(),
+    fy:          fyYear,
+    fyStart:     f.fyStart.value,
+    fyEnd:       f.fyEnd.value,
+    fyPrevEnd:   f.fyPrevEnd.value,
+    currency:    f.currency.value,
+    auditModel:  f.auditModel.value,
+    createdAt:   nowISO(),
   };
   state.clients.push(client);
   state.engagements[id] = DEFAULT_ENGAGEMENT();
@@ -2513,11 +2968,11 @@ function viewPlanning(sectionKey) {
 
     <div class="section-title">
       <h1>مرحلة التخطيط</h1>
-      <span class="badge brand">ISA 300 · ISA 315 · ISA 320</span>
+      <span class="badge brand">ISA 210 · 220 · 230 · 300 · 315</span>
       <div class="grow"></div>
       <span class="subtle">${esc(c.name)} · ${esc(c.fy || "—")}</span>
     </div>
-    <p class="subtle mb-16">المراحل الست بترتيب التنفيذ. اضغط على أي قسم لكشف الإجراءات وقوائم الرقابة المستخرجة حرفياً من برنامج التدقيق العربي (الإكسل المرجعي).</p>
+    <p class="subtle mb-16">ثمانية أقسام عمودية بترتيب التنفيذ. اضغط على أي قسم لكشف الإجراءات وقوائم الرقابة. يتم تعبئة بياناتك (اسم الشركة، الشركاء، الفترة المالية) تلقائياً في كل ورقة.</p>
 
     ${PLANNING_SECTIONS.map(sec => {
       const sheets = SHEETS_BY_PLANNING_SECTION[sec.key] || [];
@@ -2552,19 +3007,75 @@ function onPlanningToggle(key, el) {
 }
 
 function renderPlanningSection(sec, sheets, eng) {
-  if (!sheets.length) return `<p class="subtle">لا توجد ورقات مصنفة في هذا القسم حالياً.</p>`;
-
-  // Materiality calculator inline for the materiality section
-  let extra = "";
-  if (sec.key === "materiality") {
-    extra = renderMaterialityCalc(eng);
+  // v4 placeholder sections (framework / engagement / minutes / permanent / risk_assessment)
+  if (sec.v4Placeholder) {
+    return renderV4Placeholder(sec, eng);
   }
 
+  if (!sheets.length) return `<p class="subtle">لا توجد ورقات مصنفة في هذا القسم حالياً.</p>`;
+
   return `
-    ${extra}
     ${sheets.map(sh => renderSheetSubAccordion(sh, eng, sec.key)).join("")}
     <hr class="rule">
     ${renderSignOffLadder(`planning:${sec.key}`, eng)}
+  `;
+}
+
+function renderV4Placeholder(sec, eng) {
+  const c = currentClient();
+  const tbCount = (eng.tb || []).length;
+  const mappedCount = Object.keys(eng.mappings || {}).length;
+
+  if (sec.v4Placeholder === "risk_assessment") {
+    return `
+      <div class="v4-placeholder">
+        <div class="v4-ph-badge">قادم في الدفعة الثانية</div>
+        <h3>مصفوفة المخاطر — تستكمل تلقائياً من ميزان المراجعة</h3>
+        <p>يقرأ النظام التصنيف الذي عملته لكل حساب في ميزان المراجعة، ثم يعرض فقط المخاطر المتعلقة بالحسابات التي تخص هذا العميل. لا حاجة لمراجعة 506 مخاطر — يعرض لك فقط ما يخص ${esc(c.name || "العميل")}.</p>
+        <div class="v4-ph-status">
+          <span class="badge ${tbCount ? 'ok' : ''}">${tbCount ? `${tbCount} حساب في الميزان` : 'ميزان المراجعة لم يُستورد بعد'}</span>
+          <span class="badge ${mappedCount ? 'ok' : ''}">${mappedCount}/${tbCount || '—'} مصنف</span>
+        </div>
+        <p class="v4-ph-hint">عند اكتمال تصنيف الميزان، تظهر هنا مصفوفة المخاطر تلقائياً بـ ٧ أعمدة: الوصف · المخاطر · التأكيد المتأثر · نوع المخاطر · شدة التحريف (H/M/L) · الاستجابة للمخاطر.</p>
+      </div>`;
+  }
+
+  const labels = {
+    framework: {
+      title: "الإطار المحاسبي والسياسات",
+      lead: "نموذج فهم الإطار المحاسبي وسياسات الإعداد والتقديرات الجوهرية.",
+      hints: ["أسس إعداد القوائم المالية", "السياسات المحاسبية الرئيسية ومدى ملاءمتها", "التقديرات المحاسبية الجوهرية"],
+    },
+    engagement: {
+      title: "خطاب الإرتباط والتعميد",
+      lead: "قائمة تحقق لخطاب الارتباط وخطاب التعميد قبل بدء التدقيق.",
+      hints: ["تاريخ الخطاب", "اسم الشركة والكيان القانوني", "تاريخ السنة المالية", "توقيع المفوض للمطابقة", "توقيع المالك / الشركاء"],
+    },
+    minutes: {
+      title: "محضر الإجتماع مع العميل",
+      lead: "نموذج محضر اجتماع قابل للتعبئة — يُملأ من بياناتك تلقائياً.",
+      hints: ["استفسار حول نزاهة الإدارة", "الأطراف ذات العلاقة", "مجلس الإدارة وارتباطات المدراء", "تجاوز الإدارة لنظام الرقابة", "تحصيل الذمم المدينة وإثباتها", "موظفين غير مؤهلين في المراكز الرئيسية"],
+    },
+    permanent: {
+      title: "الملف الدائم",
+      lead: "وثائق العميل التي لا تتغير سنوياً — تُحفظ مرة واحدة وتُستعمل في كل ملف لاحق.",
+      hints: ["السجل التجاري الرئيسي + الفروع", "عقد التأسيس وتعديلاته", "شهادة الدخل والربط الضريبي", "تراخيص النشاط الأخرى", "هويات الشركاء"],
+    },
+  };
+  const l = labels[sec.v4Placeholder] || { title: sec.title, lead: sec.desc, hints: [] };
+
+  return `
+    <div class="v4-placeholder">
+      <div class="v4-ph-badge">قادم في الدفعة الثانية</div>
+      <h3>${esc(l.title)}</h3>
+      <p>${esc(l.lead)}</p>
+      ${l.hints.length ? `
+        <ul class="v4-ph-list">
+          ${l.hints.map(h => `<li>${esc(h)}</li>`).join("")}
+        </ul>
+      ` : ""}
+      <p class="v4-ph-hint">سيُعبأ هذا القسم بنموذج تفاعلي مع رفع المستندات في التحديث القادم (24 ساعة).</p>
+    </div>
   `;
 }
 
