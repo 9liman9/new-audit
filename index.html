@@ -1508,6 +1508,534 @@ table.t tr.mapped:hover { background: #C7DFD0; }
 }
 
 /* ============================================================
+   PAPER HEADER (v4 — auto-filled work-paper header block)
+   ============================================================ */
+.paper-header {
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  margin-bottom: 16px;
+}
+.paper-header-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px 18px;
+  margin-bottom: 12px;
+}
+.paper-header-grid > div {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+.ph-label {
+  font-size: 12px;
+  color: var(--ink-3);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.ph-value {
+  font-size: 13.5px;
+  color: var(--ink);
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ph-value.mono { font-family: "IBM Plex Mono", monospace; direction: ltr; }
+.paper-header-title {
+  font-family: "Amiri", serif;
+  font-size: 18px;
+  color: var(--brand);
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+  text-align: center;
+}
+@media (max-width: 760px) {
+  .paper-header-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ============================================================
+   IC QUESTION COMPONENT (v4 — dropdown + attachment)
+   ============================================================ */
+.ic-question {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px 16px;
+  align-items: start;
+  padding: 14px 16px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--surface);
+  margin-bottom: 8px;
+}
+.ic-question:hover { border-color: var(--rule-strong); }
+.ic-q-text {
+  font-size: 14.5px;
+  color: var(--ink);
+  line-height: 1.6;
+  padding-top: 6px;
+}
+.ic-q-controls {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.ic-q-select {
+  padding: 7px 10px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  min-width: 130px;
+}
+.ic-q-select.positive {
+  border-color: var(--status-ok);
+  background: rgba(30, 109, 82, 0.06);
+  color: var(--status-ok);
+  font-weight: 600;
+}
+.ic-q-select.negative {
+  border-color: var(--ink-mute);
+  background: var(--surface-2);
+  color: var(--ink-3);
+}
+.ic-q-attach {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 7px 12px;
+  border: 1px dashed var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  color: var(--ink-3);
+  cursor: pointer;
+  font-size: 12.5px;
+  white-space: nowrap;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  transition: all 0.15s;
+}
+.ic-q-attach:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+.ic-q-attach.required {
+  border-color: var(--status-danger);
+  border-style: solid;
+  background: rgba(162, 58, 46, 0.06);
+  color: var(--status-danger);
+  font-weight: 600;
+  animation: pulse-required 2s ease-in-out infinite;
+}
+.ic-q-attach.done {
+  border-color: var(--status-ok);
+  border-style: solid;
+  background: rgba(30, 109, 82, 0.08);
+  color: var(--status-ok);
+  font-weight: 600;
+}
+@keyframes pulse-required {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(162, 58, 46, 0); }
+  50%      { box-shadow: 0 0 0 4px rgba(162, 58, 46, 0.10); }
+}
+.ic-q-view, .ic-q-remove {
+  width: 28px; height: 28px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink-3);
+  cursor: pointer;
+  font-size: 13px;
+}
+.ic-q-view:hover { color: var(--brand); border-color: var(--brand); }
+.ic-q-remove:hover { color: var(--status-danger); border-color: var(--status-danger); }
+
+@media (max-width: 760px) {
+  .ic-question { grid-template-columns: 1fr; }
+  .ic-q-controls { justify-content: flex-start; }
+  .ic-q-select { flex: 1; min-width: 0; }
+}
+
+/* ============================================================
+   MEETING MINUTES FORM (v4 — sub-section 6)
+   ============================================================ */
+.mm-meta {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 14px;
+  margin-bottom: 14px;
+  padding: 14px;
+  background: var(--surface-2);
+  border-radius: var(--radius);
+}
+.mm-intro {
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.8;
+  padding: 14px 16px;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  font-family: "Noto Naskh Arabic", serif;
+}
+.mm-section {
+  margin-bottom: 14px;
+}
+.mm-section h4 {
+  font-family: "Amiri", serif;
+  font-size: 17px;
+  color: var(--brand);
+  margin: 0 0 8px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+}
+.mm-textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: "Noto Naskh Arabic", sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  resize: vertical;
+  box-sizing: border-box;
+}
+.mm-textarea:focus {
+  outline: 2px solid var(--brand-tint);
+  border-color: var(--brand);
+}
+.mm-signature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 2px solid var(--gold);
+}
+.mm-signature > div {
+  background: var(--surface-2);
+  padding: 14px;
+  border-radius: var(--radius);
+  text-align: center;
+}
+.mm-sig-label {
+  font-size: 12px;
+  color: var(--ink-3);
+  margin-bottom: 4px;
+}
+.mm-sig-name {
+  font-family: "Amiri", serif;
+  font-size: 17px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.mm-sig-date {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  color: var(--ink-3);
+  direction: ltr;
+}
+
+/* ============================================================
+   PERMANENT FILE FORM (v4 — sub-section 7)
+   ============================================================ */
+.pf-classify {
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-bottom: 16px;
+}
+.pf-classify h4 {
+  font-family: "Amiri", serif;
+  font-size: 17px;
+  color: var(--brand);
+  margin: 0 0 4px 0;
+}
+.pf-classify-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.pf-classify-opt {
+  background: var(--surface);
+  border: 2px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.pf-classify-opt:hover {
+  border-color: var(--rule-strong);
+  background: var(--gold-soft);
+}
+.pf-classify-opt.selected {
+  border-color: var(--brand);
+  background: rgba(31, 70, 54, 0.06);
+  box-shadow: var(--shadow-1);
+}
+.pf-classify-size {
+  font-family: "Amiri", serif;
+  font-size: 16px;
+  color: var(--brand);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.pf-classify-rule {
+  font-size: 12.5px;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+.pf-block {
+  margin-bottom: 18px;
+}
+.pf-block h4 {
+  font-family: "Amiri", serif;
+  font-size: 17px;
+  color: var(--brand);
+  margin: 0 0 4px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+}
+.pf-docs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.pf-doc {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pf-doc-label {
+  font-size: 13.5px;
+  color: var(--ink);
+  font-weight: 600;
+  line-height: 1.4;
+}
+.pf-doc-upload {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  background: var(--gold-soft);
+  border: 1px dashed var(--gold-deep);
+  border-radius: var(--radius);
+  color: var(--gold-deep);
+  cursor: pointer;
+  font-size: 12.5px;
+  font-weight: 600;
+  align-self: flex-start;
+  transition: all 0.15s;
+}
+.pf-doc-upload:hover {
+  background: var(--gold);
+  color: var(--surface);
+}
+.pf-doc-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 8px 10px;
+  background: rgba(30, 109, 82, 0.06);
+  border: 1px solid var(--status-ok);
+  border-radius: var(--radius);
+}
+.pf-doc-name {
+  font-size: 12.5px;
+  color: var(--status-ok);
+  font-weight: 600;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pf-doc-btn {
+  padding: 4px 10px;
+  border: 1px solid var(--status-ok);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--status-ok);
+  cursor: pointer;
+  font-size: 11.5px;
+  font-family: inherit;
+}
+.pf-doc-btn.danger {
+  border-color: var(--status-danger);
+  color: var(--status-danger);
+}
+.pf-doc-btn:hover {
+  background: var(--status-ok);
+  color: var(--surface);
+}
+.pf-doc-btn.danger:hover {
+  background: var(--status-danger);
+  color: var(--surface);
+}
+.pf-question {
+  margin-bottom: 12px;
+}
+.pf-q-text {
+  font-size: 14px;
+  color: var(--ink);
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+.pf-q-textarea {
+  width: 100%;
+  min-height: 70px;
+  padding: 10px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-family: inherit;
+  font-size: 13.5px;
+  line-height: 1.6;
+  resize: vertical;
+  box-sizing: border-box;
+}
+.pf-q-textarea:focus {
+  outline: 2px solid var(--brand-tint);
+  border-color: var(--brand);
+}
+
+@media (max-width: 760px) {
+  .pf-classify-options { grid-template-columns: 1fr; }
+  .pf-docs { grid-template-columns: 1fr; }
+  .mm-meta { grid-template-columns: 1fr; }
+  .mm-signature { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   RISK ASSESSMENT MATRIX (v4 — sub-section 8, auto-filtered)
+   ============================================================ */
+.risk-meta {
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+.risk-meta-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.risk-section {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+.risk-section > summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-family: "Amiri", serif;
+  font-size: 18px;
+  color: var(--brand);
+  list-style: none;
+  padding: 4px 0;
+}
+.risk-section > summary::-webkit-details-marker { display: none; }
+.risk-section[open] > summary .acc-arrow { transform: rotate(90deg); }
+.risk-sec-name { flex: 1; }
+.risk-account {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+}
+.risk-account-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.risk-acc-name {
+  font-family: "Amiri", serif;
+  font-size: 16px;
+  color: var(--ink);
+  flex: 1;
+  font-weight: 700;
+}
+.risk-table-wrap {
+  overflow-x: auto;
+}
+.risk-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.risk-table th, .risk-table td {
+  padding: 8px 10px;
+  text-align: right;
+  border: 1px solid var(--rule);
+  vertical-align: top;
+}
+.risk-table th {
+  background: var(--surface-2);
+  font-weight: 700;
+  color: var(--ink-2);
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+.risk-table tbody tr:nth-child(even) {
+  background: var(--paper);
+}
+.risk-table tbody tr:hover {
+  background: var(--gold-soft);
+}
+.risk-desc {
+  max-width: 280px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.risk-response {
+  max-width: 240px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  font-size: 12.5px;
+}
+.risk-sev {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+.risk-sev.sev-H { background: rgba(162, 58, 46, 0.14); color: var(--status-danger); }
+.risk-sev.sev-M { background: rgba(165, 95, 31, 0.14); color: var(--status-warn); }
+.risk-sev.sev-L { background: rgba(30, 109, 82, 0.14); color: var(--status-ok); }
+.risk-sev.sev-na { background: var(--surface-2); color: var(--ink-mute); }
+
+@media (max-width: 760px) {
+  .risk-desc, .risk-response { max-width: none; }
+  .risk-table th, .risk-table td { padding: 6px 8px; font-size: 12px; }
+}
+
+/* ============================================================
    V4 PLACEHOLDER CARDS (Pass-2 sub-sections)
    ============================================================ */
 .v4-placeholder {
@@ -1658,6 +2186,56 @@ table.t tr.mapped:hover { background: #C7DFD0; }
 }
 .import-zone.over { border-color: var(--brand); background: var(--brand-tint); }
 .import-zone h3 { margin-bottom: 6px; }
+
+/* 3-step import (v4) */
+.tb-import-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+.tb-step {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 18px 16px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.tb-step-num {
+  width: 32px; height: 32px;
+  display: grid;
+  place-items: center;
+  background: var(--brand);
+  color: var(--surface);
+  border-radius: 50%;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+  font-weight: 700;
+}
+.tb-step-body { flex: 1; width: 100%; }
+.tb-step h4 {
+  font-family: "Amiri", serif;
+  font-size: 16px;
+  color: var(--brand);
+  margin: 0 0 4px 0;
+}
+.tb-step p {
+  font-size: 12.5px;
+  line-height: 1.5;
+  margin: 0 0 10px 0;
+}
+.tb-step .btn {
+  width: 100%;
+  justify-content: center;
+}
+.tb-step .btn input[type="file"] { display: none; }
+@media (max-width: 760px) {
+  .tb-import-steps { grid-template-columns: 1fr; }
+}
 
 .mapping-shell {
   display: grid;
@@ -1939,6 +2517,8 @@ table.t tr.mapped:hover { background: #C7DFD0; }
 const STORAGE_KEY = "new-audit-v3";
 const PROG = JSON.parse(document.getElementById("audit-programme").textContent);
 const SAMPLE_TB_DATA = JSON.parse(document.getElementById("sample-tb").textContent);
+/* PLANNING_V4 */
+const PLANNING_V4 = {"meta":{"source":"1- مرحلة التخطبط.xlsx","generated_at":"build-v4-data.py","sheets_in_source":["ISA 300 - مرحلة التخطيط  ","ISA300-1  محضر الاجتماع  ","ISA 300-2  نموذج فتح ملف ","  ISA 300-3  الملف الدائم"," ISA 315 -4 تقييم المخاطر "," ISA 315 -5 معامل المخاطر ","ISA315-6  ساعات العمل التقديري "]},"meetingMinutes":{"title":"محاضر الإجتماعات مع العميل","intro":"تم الاجتماع في تاريخ {meeting_date} مع رئيس الحسابات الأستاذ {contact_name} للاستفسار وتحديث البيانات الخاصة ببعض البنود، وهي على النحو التالي:","sections":[{"heading":"استفسار حول نزاهة إدارة الشركة","body":"حيث تم الاستفسار عن اي قضايا تخض الشركاء بشكل عام خاصة اومتعلقة بالشركة وتم الافادة انه لايوجد مثل اي قضايا متعلقة بالشركاء ومن خلال إطلاعنا على ملف الشركة فإنه لا توجد أحداث أو ظروف شككت في نزاهة الشركاء أو أعضاء مجلس الإدارة ولا توجد إدانات وكذلك من خلال إطلاعنا على ملف الشركة فإن الشركة تم تطويرها بشكل كبيرة وتعمل في عدة بلدان منها الإمارات والكويت والبحرين وقطر وجميعها ذات سمعة جيدة في السوق"},{"heading":"الاطراف ذات علاقة التى تتعامل معهم الشركة","body":"تتعامل الشركة مع مجموعة أطرف ذوي علاقة وهم: 1- تم الاستفسار من الإدارة حول وجود أطراف ذات علاقة أخرين حيث تم إفادتنا بعدم وجود أطراف أخرين"},{"heading":"مجلس الادارة","body":"تم الإستفسار عن أعضاء مجلس إدارة الشركة حيث يوجد مفوضين عن مجلس الإدارة بإدارة الشركة ولهم الصلاحيات بالتعامل مع البنوك والجهات الحكومية والجهات القضائية والمحاكم وتم الحصول على قرار الشركاء بذلك وهم على النحو الاتي محاضر الإجتماعات مع العميل العميل: السنة المالية: 31 ديسمبر 2023 م                                 رقم ملف العميل: ----"},{"heading":"إرتباطات المدراء","body":""},{"heading":"تم الإستفسار من الإدارة حول إرتباطات المدراء مع منشأت أخرى حيث حيث أن الشركاء لا يوجد شركات مرتبطة بهم","body":""},{"heading":"ملكية الشركة لإدارة مشتركة مع منشأة أخرى","body":""},{"heading":"تم الإستفسار من الإدارة حول ملكية الشركة لإدارة مشتركة مع منشأة أخرى حيث أن هذه الشركة غير مملوكة لشركات أخرى","body":""},{"heading":"تجاوز الإداره لنظام الرقابه","body":"حيث يتم اعتماد القرارت من الشركاء قبل التعميم على الموظفين في الامور التي ليس للادارة صلاحيات بها ويتم توزيع الصلاحيات المتاحة للادارة بشكل انسيابي بين الرتب الوظيفية يجب ان تكون معتمدة من ثلاثة اشخاص على الاقل حتى يتم العمل به"},{"heading":"تحصيل الذمم المدينة واثباتها","body":"حيث يتم متابعة الذمم والتواصل مع العملاء للتحقق من إعتراف العملاء بمبلغ الذمم وعدم إحتياج الشركة لحجز مخصص بها"},{"heading":"احتجاز مخصص الذمم المشكوك في تحصيلها للذمم المدينة","body":"حيث يتم متابعة الذمم والتواصل مع العملاء للتحقق من إعتراف العملاء بمبلغ الذمم وعدم إحتياج الشركة لحجز مخصص بها"},{"heading":"موظفين غير مؤهلين في مراكز رئيسيه","body":"حيث يتم التعيين حسب الكفاءة والخبرة المطلوبة أعدها: راجعها:"}]},"permanentFile":{"title":"الملف الدائم (Permanent File)","subtitle":"توثيق أعمال التدقيق — ISA 230","entityClassification":[{"size":"large","criteria":"إيرادات سنوية ≥ 40,000,000 ر.ق  أو  عدد موظفين ≥ 250"},{"size":"medium_small","criteria":"إيرادات سنوية < 40,000,000 ر.ق  أو  عدد موظفين ≤ 99"},{"size":"very_small","criteria":"إيرادات أو أصول ≤ 3,000,000 ر.ق  وعدد موظفين ≤ 50"}],"questions":[{"id":"pf_q_1","text":"قم بوصف مختصر للنشاط الذي تعمل به المنشأة.","section":"فهم المنشأة والاطار القانوني"},{"id":"pf_q_2","text":"هل نشاط الشركة دوري ام موسمي ؟","section":"فهم المنشأة والاطار القانوني"},{"id":"pf_q_3","text":"اذكر الشكل القانوني للشركة مع تحديد رأس المال المعلن في السجل.","section":"فهم المنشأة والاطار القانوني"},{"id":"pf_q_4","text":"هل تم اعداد القوائم المالية وفقا للمعايير الدولية للتقرير المالي للمنشأت الصغيرة والمتوسطة الحجم؟","section":"فهم المنشأة والاطار القانوني"},{"id":"pf_q_5","text":"اذكر اسماء متخذي القرارات و مستوايتهم الادارية ؟","section":"فهم المنشأة والاطار القانوني"},{"id":"pf_q_6","text":"هل تواجه المنشاة مشاكل لتوفير السيولة الازمة للنشاط ؟","section":"فهم المنشأة والاطار القانوني"},{"id":"pf_q_7","text":"- اذكر اسماء الشركاء / الملاك وحصصهم وصلة القرابة والتغيرات التي حدثت على تلك الحصص ؟؟","section":"فهم المنشأة والاطار القانوني"},{"id":"pf_q_8","text":"اذكر الجهات ذات علاقة وصلتهم بالشركاء والمنشأة","section":"فهم المنشأة والاطار القانوني"}],"documents":[{"id":"pf_doc_1","label":"قم برفع السجل التجاري الرئيسي والفروع.","section":"المستندات و السجلات"},{"id":"pf_doc_2","label":"قم برفع عقد التأسيس وتحقق من التالى:-","section":"المستندات و السجلات"},{"id":"pf_doc_3","label":"احصل على نسخة من شهادة الدخل (إن وجد)","section":"المستندات و السجلات"},{"id":"pf_doc_4","label":"احصل على نسخة من تراخيص النشاط ومن التراخيص الأخرى( أن وجد)","section":"المستندات و السجلات"}]},"riskMatrix":{"title":"تقييم المخاطر · مصفوفة المخاطر بحسب فئة الحسابات","isa":"ISA 315","columns":[{"key":"description","label":"الوصف"},{"key":"assertion","label":"التأكيد المتأثر"},{"key":"type","label":"نوع المخاطر"},{"key":"severity","label":"شدة التحريف"},{"key":"response","label":"الاستجابة للمخاطر"}],"sections":[{"key":"non_current_assets","name":"الموجودات غير المتداولة","accounts":[{"name":"ممتلكات ومعدات","areaCode":"B15","risks":[{"description":"تسجيل أصول غير موجودة","assertion":"الوجود (Existence)","type":"مخاطر الرقابة (Control Risk)","severity":"L","response":"مراجعة الجرد + فحص سندات الملكية"},{"description":"عدم احتساب الإهلاك أو احتسابه خطأ","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"إعادة احتساب على أساس السياسات"},{"description":"رسملة مصاريف غير مؤهلة","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"فحص نوعية المصاريف + العقود"},{"description":"تقييم غير صحيح عند الشراء","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الكشف (Detection Risk)","severity":"M","response":"مراجعة الفواتير + مقارنة السوق"},{"description":"عدم شطب الأصول غير المستخدمة","assertion":"الوجود (Existence)","type":"مخاطر الكشف (Detection Risk)","severity":"M","response":"طلب قائمة الأصول غير الفعالة + قرارات الإدارة"},{"description":"عدم الإفصاح عن الرهون","assertion":"الإفصاح (Disclosure)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"مراجعة العقود + إيضاحات القوائم"}]},{"name":"الاصول غير الملموسة","areaCode":"B16","risks":[{"description":"إثبات أصل غير حقيقي","assertion":"الوجود (Existence)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"رسملة تكاليف بحث وتطوير غير مؤهلة"},{"description":"تقييم غير صحيح","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الجوهرية (Inherent Risk)","severity":"H","response":"لم يتم عمل اختبار هبوط في القيمة"},{"description":"غياب اختبارات انخفاض القيمة","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"ضعف الأداء ولم يتم تخفيض الشهرة"},{"description":"إهلاك أو استهلاك غير ملائم","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"برنامج محاسبي يُستهلك على 15 سنة"},{"description":"رسملة مصاريف تشغيلية","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"تدريب الموظفين تم تسجيله كبرمجيات"},{"description":"عدم الإفصاح أو التصنيف غير السليم","assertion":"الإفصاح (Disclosure)","type":"مخاطر الكشف (Detection Risk)","severity":"M","response":"مراجعة العقود + إيضاحات القوائم"}]},{"name":"الاستثمارات","areaCode":"B15","risks":[{"description":"تقييم غير صحيح","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"استخدام سعر قديم لسهم أو سند"},{"description":"غياب اختبارات انخفاض القيمة","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"شركة زميلة تخسر منذ سنوات ولم تُخفض القيمة"},{"description":"تصنيف غير مناسب","assertion":"العرض والتصنيف (Presentation and Classification)","type":"مخاطر الكشف (Detection Risk)","severity":"M","response":"مخالفة لمعيار IAS 28 أو IFRS 9"},{"description":"عدم وجود اثبات ملكية","assertion":"الحقوق والالتزامات (Rights and Obligations)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"لا يوجد عقد شراء أو كشف من الوسيط المالي"},{"description":"تسجيل ارباح غير محققة","assertion":"الاكتمال (Completeness)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"إدخال أرباح من استثمارات بالمعالجة الخاطئة"},{"description":"عدم الإفصاح أو التصنيف غير السليم","assertion":"الإفصاح (Disclosure)","type":"مخاطر الكشف (Detection Risk)","severity":"M","response":"لا يظهر في الإيضاحات رغم أنه هام"},{"description":"تضخيم أو تقليل القيمة بقصد التلاعب","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"تضخيم الأصول أو تحسين صورة المركز المالي"}]},{"name":"حق إستخدام الاصل","areaCode":"B15","risks":[{"description":"عدم الاعتراف بالاصل","assertion":"الوجود (Existence)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"إيجار مباني لأكثر من سنة لم يُسجل كـ ROU"},{"description":"تقييم غير دقيق","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"خصم دفعات الإيجار باستخدام معدل غير صحيح"},{"description":"انخفاض قيمة الاصل","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"فرع تم إغلاقه ولا زال الأصل مسجل بالكامل"},{"description":"أخطاء في احتساب الاهلاك","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الكشف (Detection Risk)","severity":"M","response":"استهلاك على مدى 10 سنوات لعقد مدته 3 سنوات"},{"description":"عدم الإفصاح أو التصنيف غير السليم","assertion":"الإفصاح (Disclosure)","type":"مخاطر الكشف (Detection Risk)","severity":"M","response":"مخالفة العرض المطلوب في IFRS 16"},{"description":"عدم فصل التزامات الايجار (طويل-قصير)","assertion":"العرض والتصنيف (Presentation and Classification)","type":"مخاطر الكشف (Detection Risk)","severity":"M","response":"مخالفة عرض الالتزامات حسب معيار العرض IAS 1"}]},{"name":"المشاريع تحت التنفيذ","areaCode":"B15","risks":[{"description":"رسملة تكاليف غير مؤهلة","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"تسجيل مصاريف إدارية ضمن تكلفة المشروع"},{"description":"تقييم غير دقيق","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الجوهرية (Inherent Risk)","severity":"H","response":"لا توجد فواتير أو عقود واضحة"},{"description":"تأخير غير مبرر في التحويل","assertion":"العرض والتصنيف (Presentation and Classification)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"مشروع مكتمل لم يُنقل إلى PPE"},{"description":"إنخفاض في القيمة","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"لا يتم الاعتراف بخسائر الهبوط"},{"description":"عدم الإفصاح أو التصنيف غير السليم","assertion":"الإفصاح (Disclosure)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"غياب بيان تفصيلي بالمشاريع"},{"description":"الاعتراف بأصل وهمي","assertion":"الحقوق والالتزامات (Rights and Obligations)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"لا توجد مواقع فعلية أو زيارات ميدانية"}]}]},{"key":"current_assets","name":"الموجودات  المتداولة","accounts":[{"name":"النقد وما في حكمه","areaCode":"B10","risks":[{"description":"وجود أرصدة وهمية","assertion":"الوجود (Existence)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"- إجراء تأكيدات نقدية من البنك (Bank Confirmations)"},{"description":"سرقة إختلاس","assertion":"الوجود (Existence)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"تقييم وفحص نظام الرقابة الداخلية على النقد."},{"description":"عدم إجراء تسويات بنكية","assertion":"الدقة (Accuracy)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"مقارنة كشوفات البنك مع دفاتر الحسابات."},{"description":"عدم الإفصاح أو التصنيف غير السليم","assertion":"الإفصاح (Disclosure)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"مراجعة تقارير القوائم المالية والتأكد من دقة التصنيف والإفصاح."},{"description":"النقد محظور أو مقيد","assertion":"الحقوق والالتزامات (Rights and Obligations)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"مراجعة العقود والاتفاقيات المتعلقة بقيود استخدام النقد"},{"description":"الشيكات المؤجلة أو المرتجعة","assertion":"الوجود (Existence)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"مراجعة سجل الشيكات المؤجلة والمرتجعة."}]},{"name":"الذمم المدينة التجارية","areaCode":"B12","risks":[{"description":"وجود ارصدة وهمية او تسجيل ذمم غير حقيقية","assertion":"الوجود (Existence)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"إرسال تأكيدات خارجية (Confirmations)، فحص الوثائق"},{"description":"سرقة أو اختلاس أو تلاعب في سجلات الذمم","assertion":"الوجود (Existence)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"مراجعة الرقابة الداخلية، اختبار التراخيص والفصل بين المهام"},{"description":"عدم إجراء تسويات بنكية دقيقة أو تأخير في التسويات","assertion":"الاكتمال (Completeness)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"مراجعة التسويات البنكية، تحليل الفروقات"},{"description":"تسجيل مبيعات أو ذمم غير مستحقة أو تسجيل إيرادات مبكرة","assertion":"الاكتمال (Completeness)","type":"مخاطر الجوهرية (Inherent Risk)","severity":"H","response":"فحص عمليات نهاية الفترة، مراجعة الشحنات والفواتير"},{"description":"تأخير أو عدم تحصيل الذمم لفترات طويلة (ديون متعثرة أو معدومة)","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الجوهرية (Inherent Risk)","severity":"H","response":"مراجعة مخصص الديون، تحليل أعمار الذمم"},{"description":"عدم احتساب مخصص كافٍ للذمم المشكوك في تحصيلها","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"اختبار حساب المخصص وسياسة الشركة"},{"description":"تقييم غير دقيق للذمم (عدم ضبط القيمة الدفترية وفق القيمة القابلة للتحصيل)","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الجوهرية (Inherent Risk)","severity":"H","response":"مراجعة التقييم، اختبار المخصصات"},{"description":"عدم الإفصاح عن الذمم المتعلقة بأطراف ذات علاقة أو ديون محظورة","assertion":"العرض والتصنيف (Presentation and Classification)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"مراجعة الإفصاحات، التأكد من التوافق مع المعايير"},{"description":"تصنيف غير سليم بين ذمم قصيرة وطويلة الأجل","assertion":"العرض والتصنيف (Presentation and Classification)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"مراجعة تصنيف الذمم وتقارير الشركة"},{"description":"عدم التمييز أو الإفصاح عن الذمم المقيدة أو المرهونة","assertion":"العرض والتصنيف (Presentation and Classification)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"مراجعة العقود والتزامات الشركة"},{"description":"وجود شيكات مؤجلة أو شيكات مرتجعة ضمن الذمم بدون معالجة","assertion":"الدقة (Accuracy)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"مراجعة تفاصيل الشيكات، التحقق من التحصيل"},{"description":"تسجيل عمليات مكررة أو وهمية للذمم المدينة","assertion":"الوجود (Existence)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"تحليل البيانات، مراجعة العمليات غير الطبيعية"},{"description":"عدم الالتزام بالتوقيت الصحيح لتسجيل المبيعات والذمم (اختلافات في التوقيت – Cut-off errors)","assertion":"الوجود (Existence)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"فحص المعاملات قرب نهاية الفترة"},{"description":"التعامل مع عملاء غير حقيقيين أو غير موثقين","assertion":"الوجود (Existence)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"التحقق من صحة العملاء، مراجعة عقود البيع"},{"description":"ضعف الرقابة الداخلية على إجراءات الائتمان والتحصيل","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"اختبار نظام الرقابة، توصيات بتعزيز الضوابط"},{"description":"عدم الإفصاح أو التصنيف غير السليم في التقارير المالية عن الذمم","assertion":"الإفصاح (Disclosure)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"مراجعة التقارير والإفصاحات"},{"description":"مخاطر عدم تحصيل الذمم بسبب ظروف السوق أو مشاكل مالية لدى العملاء","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الجوهرية (Inherent Risk)","severity":"M","response":"متابعة التقارير المالية للعملاء، مراجعة المخصصات"},{"description":"مخاطر قانونية لصعوبة تحصيل الذمم بسبب نزاعات أو دعاوى قضائية","assertion":"الحقوق والالتزامات (Rights and Obligations)","type":"مخاطر الجوهرية (Inherent Risk)","severity":"M","response":"مراجعة الوثائق القانونية، استشارة قانونية"}]},{"name":"المصاريف المدفوعه مقدما والارصدة المدينة الاخرى","areaCode":"B13","risks":[{"description":"وجود أرصدة وهمية أو مبالغ غير قابلة للتحصيل","assertion":"الوجود (Existence)","type":"مخاطر الكشف (Detection Risk)","severity":"M","response":"تسجيل مصاريف إدارية ضمن تكلفة المشروع"},{"description":"تأخير في تحصيل الأرصدة أو عدم تحصيلها","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الجوهرية (Inherent Risk)","severity":"M","response":"لا توجد فواتير أو عقود واضحة"},{"description":"تصنيف غير صحيح للأرصدة (متداولة مقابل طويلة الأجل)","assertion":"العرض والتصنيف (Presentation and Classification)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"مشروع مكتمل لم يُنقل إلى PPE"},{"description":"عدم الإفصاح عن أرصدة مرهونة أو مقيدة","assertion":"الإفصاح (Disclosure)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"لا يتم الاعتراف بخسائر الهبوط"},{"description":"تسجيل أرصدة لمستفيدين غير حقيقيين أو بدون توثيق","assertion":"الوجود (Existence)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"غياب بيان تفصيلي بالمشاريع"}]},{"name":"الاطراف ذات العلاقه","areaCode":"B12-B20","risks":[{"description":"عدم الافصاح عن كفاية الاطراف ذات العلاقة","assertion":"الإفصاح (Disclosure)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"مراجعة قوائم الاطراف ذات العلاقة المقدمة من الادارة"}]},{"name":"الذمم الدائنة","areaCode":"L10","risks":[{"description":"تسجيل التزامات وهيمة أو غير موجودة","assertion":"الوجود (Existence)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"طلب تأكيدات من الموردين"}]},{"name":"الالتزام التمويلي","areaCode":"L20","risks":[{"description":"عدم الاعتراف بالالتزام او تاخير تسجيله","assertion":"الاكتمال (Completeness)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"مراجعة عقود الايجار التمويلي"},{"description":"تقييم غير دقيق لمبلغ الالتزام","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الجوهرية (Inherent Risk)","severity":"M","response":"التحقق من صحة معدلات الخصم المستخدمة"},{"description":"تصنيف خاطئ للالتزام طويل /قصير الاجل","assertion":"العرض والتصنيف (Presentation and Classification)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"فحص التقسيم بين الالتزامات الحالية وغير الحالية"},{"description":"التاكد من تطبيق السياسة المحاسبية المناسبة","assertion":"الإفصاح (Disclosure)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"مراجعه الافصاحات المالية والملاحظات"},{"description":"عدم الفصل بين الالتزام التشغيلي والتمويلي","assertion":"العرض والتصنيف (Presentation and Classification)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"مراجعة تصنيف الالتزامات في القوائم المالية"},{"description":"اخطاء في تحديد مده عقد الايجار","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"مراجعة العقود الاصلية"}]},{"name":"الارصدة الدائنة الاخرى","areaCode":"L13","risks":[{"description":"تسجيل التزامات غير صحيحه او وهمية","assertion":"الوجود (Existence)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"- طلب تأكيدات من الأطراف ذات العلاقة"},{"description":"عدم تسجيل بعض الالتزامات او التاخير في التسجيل","assertion":"الاكتمال (Completeness)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"مراجعة كشوف الحسابات"},{"description":"تصنيف غير صحيح للارصدة","assertion":"العرض والتصنيف (Presentation and Classification)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"مراجعة القوائم المالية والتصنيفات المحاسبية |"},{"description":"عدم الافصاح الكامل او الشفاف","assertion":"الإفصاح (Disclosure)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"مراجعة ملاحظات القوائم المالية"},{"description":"وجود نزاعات او خلافات غير معلنة","assertion":"الحقوق والالتزامات (Rights and Obligations)","type":"مخاطر الجوهرية (Inherent Risk)","severity":"M","response":"مراجعة المستندات القانونية"},{"description":"ضعف نظام الرقابة على العمليات المتعلقة بالارصدة","assertion":"الدقة (Accuracy)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"تقييم نظام الرقابة الداخلية"}]},{"name":"القروض","areaCode":"L20","risks":[{"description":"عدم تسجيل القرض أو تسجيله جزئيًا","assertion":"الاكتمال (Completeness)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"- مراجعة العقود البنكية"},{"description":"تقييم غير دقيق لمبلغ القرض والفوائد المستحقة","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الجوهرية (Inherent Risk)","severity":"M","response":"مراجعة جداول السداد"},{"description":"عدم تصنيف القرض بشكل صحيح بين قصير وطويل الأجل","assertion":"العرض والتصنيف (Presentation and Classification)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"التأكد من التقسيم الصحيح حسب تواريخ الاستحقاق"},{"description":"عدم الإفصاح عن شروط القرض","assertion":"الإفصاح (Disclosure)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"مراجعة الإفصاحات التوضيحية في الإيضاحات المرفقة"},{"description":"عدم تسجيل الفوائد المستحقة أو الرسوم المرتبطة بالقرض","assertion":"الاكتمال (Completeness)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"مراجعة حساب الفوائد المستحقة"},{"description":"السداد المبكر دون توثيق التأثير المالي","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"مراجعة عمليات السداد المبكر"}]},{"name":"مخصص نهاية الخدمة","areaCode":"L13","risks":[{"description":"عدم احتساب المخصص أو عدم الاعتراف به","assertion":"الوجود (Existence)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"- مراجعة سياسة المنشأة لنهاية الخدمة"},{"description":"احتساب المخصص بمبلغ غير دقيق أو بطريقة غير صحيحة","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الجوهرية (Inherent Risk)","severity":"L","response":"اختبار صحة المعادلة المستخدمة (حسب قانون العمل أو IFRS/GAAP)"},{"description":"استخدام افتراضات خاطئة","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الجوهرية (Inherent Risk)","severity":"M","response":"فحص الافتراضات الاكتوارية أو الداخلية المستخدمة"},{"description":"عدم تحديث المخصص بشكل دوري لتعكس التغيرات الفعلية","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"التحقق من تحديث بيانات الموظفين"},{"description":"عدم الإفصاح عن تفاصيل المخصص بالقوائم المالية","assertion":"الإفصاح (Disclosure)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"- التأكد من أن الإفصاح يشمل: السياسة المحاسبية، طريقة الحساب، التغيرات في الرصيد"},{"description":"تسجيل التزام غير حقيقي نتيجة تقدير مفرط","assertion":"الدقة (Accuracy)","type":"مخاطر الجوهرية (Inherent Risk)","severity":"H","response":"مراجعة التغيرات الكبيرة في الرصيد"}]},{"name":"الايرادات","areaCode":"I10","risks":[{"description":"الاعتراف بإيرادات وهمية أو لم تتحقق بعد","assertion":"الوجود (Existence)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"- فحص العقود وفواتير البيع"},{"description":"تسجيل الإيرادات في الفترة الخطأ","assertion":"العرض والتصنيف (Presentation and Classification)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"- اختبار العمليات القريبة من تاريخ نهاية الفترة"},{"description":"التلاعب في قيمة الإيرادات (زيادة أو نقصان)","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"مراجعة تفاصيل الفواتير"},{"description":"الاعتراف بإيرادات مكررة أو مزدوجة","assertion":"الدقة (Accuracy)","type":"مخاطر الكشف (Detection Risk)","severity":"M","response":"- فحص النظام المحاسبي بحثًا عن التكرارات"},{"description":"الاعتراف بإيرادات من عمليات غير مكتملة أو مشروطة","assertion":"الوجود (Existence)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"- مراجعة العقود وبنود التسليم / الأداء"},{"description":"الاعتراف بإيرادات لا تخص الفترة الحالية","assertion":"التوقيت (Cut-off)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"تحليل العمليات حسب التواريخ"}]},{"name":"المصاريف التشغيلية","areaCode":"I12","risks":[{"description":"تسجيل مصاريف غير حقيقية أو وهمية","assertion":"الوجود (Existence)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"- مراجعة عينات من الفواتير والمستندات الداعمة"},{"description":"تسجيل مصاريف تخص فترات مالية أخرى","assertion":"التوقيت (Cut-off)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"- اختبار المصاريف القريبة من تاريخ نهاية الفترة"},{"description":"تصنيف خاطئ للمصاريف ضمن بنود أخرى","assertion":"العرض والتصنيف (Presentation and Classification)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"- مراجعة تصنيف المصاريف في القوائم المالية"},{"description":"تسجيل المصاريف مرتين (تكرار أو نسخ)","assertion":"الاكتمال (Completeness)","type":"مخاطر الكشف (Detection Risk)","severity":"M","response":"تحليل حسابات المصاريف لاكتشاف التكرار"},{"description":"عدم تسجيل مصاريف فعلية تم دفعها","assertion":"الاكتمال (Completeness)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"- مطابقة الفواتير المسددة مع المسجلة في النظام"},{"description":"تضخيم المصاريف بهدف تقليل الأرباح","assertion":"الدقة (Accuracy)","type":"مخاطر الجوهرية (Inherent Risk)","severity":"M","response":"- تحليل المصاريف الكبيرة أو غير الاعتيادية"}]},{"name":"الايرادات","areaCode":"I10","risks":[{"description":"تسجيل إيرادات وهمية أو غير محققة","assertion":"الوجود (Existence)","type":"مخاطر الكشف (Detection Risk)","severity":"L","response":"- مراجعة المستندات الداعمة (مثل عقود، إيصالات، إثبات الأداء)"},{"description":"الاعتراف بإيرادات تخص فترات لاحقة","assertion":"التوقيت (Cut-off)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"اختبار القطع الزمني (Cut-off) للإيرادات الأخرى"},{"description":"تصنيف الإيرادات الأخرى ضمن إيرادات النشاط الأساسي","assertion":"العرض والتصنيف (Presentation and Classification)","type":"مخاطر الرقابة (Control Risk)","severity":"L","response":"- تحليل الحسابات والتأكد من التصنيف الصحيح"},{"description":"عدم الإفصاح عن مصادر الإيرادات الأخرى","assertion":"الإفصاح (Disclosure)","type":"مخاطر الرقابة (Control Risk)","severity":"L","response":"- مراجعة الملاحظات المرفقة بالقوائم المالية"},{"description":"تسجيل إيرادات من أطراف ذات علاقة دون تسعير عادل","assertion":"الوجود (Existence)","type":"مخاطر الرقابة (Control Risk)","severity":"L","response":"- فحص العمليات مع الأطراف ذات العلاقة"}]},{"name":"المصاريف الادارية والعمومية","areaCode":"I13","risks":[{"description":"تسجيل مصاريف غير حقيقية أو غير مدعومة بمستندات","assertion":"الوجود (Existence)","type":"مخاطر الكشف (Detection Risk)","severity":"H","response":"- فحص عينات من المصاريف"},{"description":"تصنيف خاطئ للمصاريف بين إدارية وتشغيلية أو رأسمالية","assertion":"الإفصاح (Disclosure)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"- مراجعة التصنيفات في الدليل المحاسبي"},{"description":"تسجيل مصاريف لفترة محاسبية غير صحيحة","assertion":"التوقيت (Cut-off)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"- اختبار القطع الزمني لمصاريف نهاية الفترة"},{"description":"إهمال أو حذف بعض المصاريف الفعلية","assertion":"الاكتمال (Completeness)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"- مراجعة المدفوعات النقدية والبنكية"},{"description":"تضخيم المصروفات بهدف تقليل الأرباح","assertion":"الدقة (Accuracy)","type":"مخاطر الجوهرية (Inherent Risk)","severity":"H","response":"- تحليل النسب المالية المتعلقة بالمصاريف"},{"description":"عدم الإفصاح عن مصاريف ذات طبيعة غير متكررة أو استثنائية","assertion":"الإفصاح (Disclosure)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"- مراجعة الإيضاحات بالقوائم المالية"}]},{"name":"الرواتب والاجور","areaCode":"I12-I13","risks":[{"description":"تسجيل رواتب لأشخاص غير موجودين (موظفين وهميين)","assertion":"الوجود (Existence)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"- مطابقة كشف الرواتب مع ملفات الموظفين"},{"description":"صرف رواتب بمبالغ غير صحيحة أو احتساب بدلات بشكل خاطئ","assertion":"القياس والتوزيع (Valuation and Allocation)","type":"مخاطر الرقابة (Control Risk)","severity":"H","response":"- فحص هيكل الرواتب"},{"description":"تسجيل رواتب في فترة مالية خاطئة","assertion":"التوقيت (Cut-off)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"اختبار القطع الزمني للرواتب والمكافآت"},{"description":"استبعاد بعض الموظفين الفعليين من الرواتب","assertion":"الاكتمال (Completeness)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"- مطابقة ملفات الموارد البشرية مع كشوف الرواتب"},{"description":"تكرار تسجيل نفس الراتب أو إدخال خاطئ في النظام","assertion":"الدقة (Accuracy)","type":"مخاطر الكشف (Detection Risk)","severity":"M","response":"- تحليل التكرارات"},{"description":"عدم الإفصاح عن إجمالي التزامات الرواتب في القوائم المالية","assertion":"الإفصاح (Disclosure)","type":"مخاطر الرقابة (Control Risk)","severity":"M","response":"- مراجعة الإفصاحات في الإيضاحات المرفقة بالقوائم"}]}]}]}};
 
 const AREAS = [
   { code: "B10",     name: "النقدية وما في حكمها",        en: "Cash & cash equivalents" },
@@ -2084,6 +2664,144 @@ function flashAutoSave(text) {
   flashAutoSave._t = setTimeout(() => el.classList.remove("show"), 1600);
 }
 
+/* ============================================================
+   ATTACHMENT STORE (IndexedDB) — persists file bytes across reloads.
+   Used by IC question dropdowns, Permanent File doc slots, Meeting Minutes refs.
+   Schema: { id, filename, size, mime, blob, attachedTo, createdAt }
+   ============================================================ */
+const attachStore = (function() {
+  const DB_NAME = "new-audit-attachments";
+  const STORE = "attachments";
+  let _dbp = null;
+
+  function open() {
+    if (_dbp) return _dbp;
+    _dbp = new Promise((resolve, reject) => {
+      const req = indexedDB.open(DB_NAME, 1);
+      req.onupgradeneeded = (e) => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains(STORE)) {
+          const os = db.createObjectStore(STORE, { keyPath: "id" });
+          os.createIndex("attachedTo", "attachedTo", { unique: false });
+        }
+      };
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+    return _dbp;
+  }
+
+  function newId() {
+    return "att_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 8);
+  }
+
+  async function put(file, attachedTo) {
+    const db = await open();
+    const rec = {
+      id: newId(),
+      filename: file.name,
+      size: file.size,
+      mime: file.type || "application/octet-stream",
+      blob: file,
+      attachedTo: attachedTo || "",
+      createdAt: nowISO(),
+    };
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE, "readwrite");
+      tx.objectStore(STORE).add(rec);
+      tx.oncomplete = () => resolve(rec.id);
+      tx.onerror = () => reject(tx.error);
+    });
+  }
+
+  async function get(id) {
+    const db = await open();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE, "readonly");
+      const req = tx.objectStore(STORE).get(id);
+      req.onsuccess = () => resolve(req.result || null);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  async function meta(id) {
+    const r = await get(id);
+    if (!r) return null;
+    return { id: r.id, filename: r.filename, size: r.size, mime: r.mime, attachedTo: r.attachedTo, createdAt: r.createdAt };
+  }
+
+  async function list(attachedTo) {
+    const db = await open();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE, "readonly");
+      const os = tx.objectStore(STORE);
+      const items = [];
+      const req = attachedTo
+        ? os.index("attachedTo").openCursor(IDBKeyRange.only(attachedTo))
+        : os.openCursor();
+      req.onsuccess = (e) => {
+        const cur = e.target.result;
+        if (cur) {
+          const r = cur.value;
+          items.push({ id: r.id, filename: r.filename, size: r.size, mime: r.mime, attachedTo: r.attachedTo, createdAt: r.createdAt });
+          cur.continue();
+        } else {
+          resolve(items);
+        }
+      };
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  async function remove(id) {
+    const db = await open();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE, "readwrite");
+      tx.objectStore(STORE).delete(id);
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    });
+  }
+
+  async function objectURL(id) {
+    const r = await get(id);
+    if (!r) return null;
+    return URL.createObjectURL(r.blob);
+  }
+
+  function formatSize(bytes) {
+    if (!bytes) return "0 B";
+    const k = 1024;
+    if (bytes < k) return bytes + " B";
+    if (bytes < k * k) return (bytes / k).toFixed(1) + " KB";
+    return (bytes / (k * k)).toFixed(1) + " MB";
+  }
+
+  return { put, get, meta, list, remove, objectURL, formatSize };
+})();
+
+/* Open an attachment in a new tab. Used by inline buttons in forms. */
+async function openAttachment(id) {
+  try {
+    const url = await attachStore.objectURL(id);
+    if (url) window.open(url, "_blank", "noopener");
+  } catch (e) { console.warn("openAttachment failed", e); }
+}
+
+/* Handle file input change: upload to attachStore, then call back with id + meta. */
+async function attachFileFromInput(inputEl, attachedTo, onDone) {
+  const file = inputEl.files && inputEl.files[0];
+  if (!file) return;
+  try {
+    const id = await attachStore.put(file, attachedTo);
+    onDone(id, { filename: file.name, size: file.size, mime: file.type });
+    flashAutoSave("تم رفع الملف");
+  } catch (e) {
+    console.error("attach failed", e);
+    alert("فشل رفع الملف: " + e.message);
+  }
+}
+
 function currentClient() {
   if (!state.currentClientId) return null;
   return state.clients.find(c => c.id === state.currentClientId) || null;
@@ -2093,6 +2811,165 @@ function currentEngagement() {
   if (!c) return null;
   if (!state.engagements[c.id]) state.engagements[c.id] = DEFAULT_ENGAGEMENT();
   return state.engagements[c.id];
+}
+
+/* ============================================================
+   DATA PROPAGATION (v4)
+   Returns the header data that every audit document/work paper needs.
+   Per Yazan's voice note: "every paper auto-fills from client setup".
+   ============================================================ */
+function auditPaperHeader() {
+  const c = currentClient() || {};
+  const a = state.auditor || {};
+  return {
+    clientNameAR:   c.name || "",
+    clientNameEN:   c.nameEN || "",
+    crNum:          c.crNum || "",
+    legalForm:      c.legalForm || "",
+    capital:        c.capital || "",
+    partners:       c.partners || "",
+    hqAddress:      c.hqAddress || "",
+    fy:             c.fy || "",
+    fyStart:        c.fyStart || "",
+    fyEnd:          c.fyEnd || "",
+    fyPrevEnd:      c.fyPrevEnd || "",
+    currency:       c.currency || "QAR",
+    auditModel:     c.auditModel || "",
+    preparerName:   a.name || "",
+    reviewerName:   a.name || "",  // For now same — Pass 2.1 splits roles when multi-user lands
+    firmName:       a.firm || "",
+    auditorPosition:a.position || "",
+    todayHijri:     nowHijri(),
+    todayGreg:      nowGregISO(),
+  };
+}
+
+/* Render a standardized header block for any work paper / form. */
+function renderPaperHeader(opts) {
+  const h = auditPaperHeader();
+  const title = (opts && opts.title) || "ورقة العمل";
+  return `
+    <div class="paper-header">
+      <div class="paper-header-grid">
+        <div><span class="ph-label">العميل</span><span class="ph-value">${esc(h.clientNameAR) || "—"}</span></div>
+        <div><span class="ph-label">السنة المالية</span><span class="ph-value mono">${esc(h.fyStart || "—")} → ${esc(h.fyEnd || "—")}</span></div>
+        <div><span class="ph-label">المعد</span><span class="ph-value">${esc(h.preparerName) || "—"}</span></div>
+        <div><span class="ph-label">المراجع</span><span class="ph-value">${esc(h.reviewerName) || "—"}</span></div>
+        <div><span class="ph-label">التاريخ</span><span class="ph-value mono">${esc(h.todayGreg)}</span></div>
+        <div><span class="ph-label">رقم السجل التجاري</span><span class="ph-value mono">${esc(h.crNum) || "—"}</span></div>
+      </div>
+      <div class="paper-header-title">${esc(title)}</div>
+    </div>
+  `;
+}
+
+/* ============================================================
+   IC QUESTION COMPONENT (v4 — replaces strong/medium/weak/na)
+   Per Yazan minute 40: dropdown {يوجد/لا يوجد/ينطبق/لا ينطبق}
+   On positive answer (exists/applies), REQUIRE a file upload.
+   State: eng.icAnswers[qid] = {answer, attachmentId, attachmentName, note, at}
+   ============================================================ */
+const IC_OPTIONS = {
+  yesno:   [{v: "exists",      label: "يوجد",      positive: true},
+            {v: "not_exists",  label: "لا يوجد",   positive: false}],
+  applies: [{v: "applies",     label: "ينطبق",     positive: true},
+            {v: "not_applies", label: "لا ينطبق",  positive: false}],
+  both:    [{v: "exists",      label: "يوجد",      positive: true},
+            {v: "not_exists",  label: "لا يوجد",   positive: false},
+            {v: "applies",     label: "ينطبق",     positive: true},
+            {v: "not_applies", label: "لا ينطبق",  positive: false}],
+};
+
+function renderIcQuestion(qid, text, opts) {
+  const eng = currentEngagement();
+  if (!eng) return "";
+  const opt = opts || {};
+  const variant = opt.variant || "yesno";   // yesno | applies | both
+  const options = IC_OPTIONS[variant] || IC_OPTIONS.yesno;
+  const current = (eng.icAnswers && eng.icAnswers[qid]) || {};
+  const answer = current.answer || "";
+  const attMeta = current.attachmentName ? { id: current.attachmentId, filename: current.attachmentName } : null;
+  const isPositive = options.find(o => o.v === answer)?.positive === true;
+  const requiresAttach = isPositive && !attMeta;
+
+  return `
+    <div class="ic-question" data-qid="${esc(qid)}">
+      <div class="ic-q-text">${esc(text)}</div>
+      <div class="ic-q-controls">
+        <select class="ic-q-select ${isPositive ? 'positive' : answer ? 'negative' : ''}" onchange="handleIcAnswer('${esc(qid)}', this.value)">
+          <option value="">— اختر إجابة —</option>
+          ${options.map(o => `<option value="${o.v}" ${answer === o.v ? "selected" : ""}>${esc(o.label)}</option>`).join("")}
+        </select>
+        <label class="ic-q-attach ${requiresAttach ? 'required' : ''} ${attMeta ? 'done' : ''}" title="${attMeta ? esc(attMeta.filename) : 'رفع مستند داعم'}">
+          <input type="file" hidden onchange="handleIcAttach('${esc(qid)}', this)" />
+          ${attMeta ? `📎 ${esc((attMeta.filename || '').slice(0, 24))}${(attMeta.filename || '').length > 24 ? '…' : ''}`
+                   : (requiresAttach ? '📎 مطلوب رفع مستند' : '📎 رفع مستند')}
+        </label>
+        ${attMeta ? `
+          <button class="ic-q-view" type="button" onclick="openAttachment('${esc(attMeta.id)}')" title="عرض الملف">↗</button>
+          <button class="ic-q-remove" type="button" onclick="handleIcDetach('${esc(qid)}')" title="إزالة">✕</button>
+        ` : ""}
+      </div>
+    </div>
+  `;
+}
+
+function handleIcAnswer(qid, value) {
+  const eng = currentEngagement();
+  if (!eng) return;
+  if (!eng.icAnswers) eng.icAnswers = {};
+  eng.icAnswers[qid] = Object.assign({}, eng.icAnswers[qid] || {}, {
+    answer: value || null,
+    at: nowISO(),
+  });
+  saveState();
+  // Local re-render of just this question (avoid full page redraw)
+  const wrap = document.querySelector(`.ic-question[data-qid="${qid.replace(/"/g, '\\"')}"]`);
+  if (wrap) {
+    wrap.outerHTML = renderIcQuestion(qid, wrap.querySelector(".ic-q-text").textContent, { variant: detectVariant(wrap) });
+  }
+}
+
+function handleIcAttach(qid, inputEl) {
+  attachFileFromInput(inputEl, "icq:" + qid, (id, meta) => {
+    const eng = currentEngagement();
+    if (!eng) return;
+    if (!eng.icAnswers) eng.icAnswers = {};
+    eng.icAnswers[qid] = Object.assign({}, eng.icAnswers[qid] || {}, {
+      attachmentId: id,
+      attachmentName: meta.filename,
+      at: nowISO(),
+    });
+    saveState();
+    const wrap = document.querySelector(`.ic-question[data-qid="${qid.replace(/"/g, '\\"')}"]`);
+    if (wrap) {
+      wrap.outerHTML = renderIcQuestion(qid, wrap.querySelector(".ic-q-text").textContent, { variant: detectVariant(wrap) });
+    }
+  });
+}
+
+async function handleIcDetach(qid) {
+  const eng = currentEngagement();
+  if (!eng || !eng.icAnswers || !eng.icAnswers[qid]) return;
+  const oldId = eng.icAnswers[qid].attachmentId;
+  if (oldId) {
+    try { await attachStore.remove(oldId); } catch (e) {}
+  }
+  eng.icAnswers[qid].attachmentId = null;
+  eng.icAnswers[qid].attachmentName = null;
+  eng.icAnswers[qid].at = nowISO();
+  saveState();
+  const wrap = document.querySelector(`.ic-question[data-qid="${qid.replace(/"/g, '\\"')}"]`);
+  if (wrap) {
+    wrap.outerHTML = renderIcQuestion(qid, wrap.querySelector(".ic-q-text").textContent, { variant: detectVariant(wrap) });
+  }
+}
+
+function detectVariant(wrap) {
+  const opts = Array.from(wrap.querySelectorAll(".ic-q-select option")).map(o => o.value).filter(Boolean);
+  if (opts.includes("exists") && opts.includes("applies")) return "both";
+  if (opts.includes("applies")) return "applies";
+  return "yesno";
 }
 
 /* ============================================================
@@ -3026,19 +3903,10 @@ function renderV4Placeholder(sec, eng) {
   const tbCount = (eng.tb || []).length;
   const mappedCount = Object.keys(eng.mappings || {}).length;
 
-  if (sec.v4Placeholder === "risk_assessment") {
-    return `
-      <div class="v4-placeholder">
-        <div class="v4-ph-badge">قادم في الدفعة الثانية</div>
-        <h3>مصفوفة المخاطر — تستكمل تلقائياً من ميزان المراجعة</h3>
-        <p>يقرأ النظام التصنيف الذي عملته لكل حساب في ميزان المراجعة، ثم يعرض فقط المخاطر المتعلقة بالحسابات التي تخص هذا العميل. لا حاجة لمراجعة 506 مخاطر — يعرض لك فقط ما يخص ${esc(c.name || "العميل")}.</p>
-        <div class="v4-ph-status">
-          <span class="badge ${tbCount ? 'ok' : ''}">${tbCount ? `${tbCount} حساب في الميزان` : 'ميزان المراجعة لم يُستورد بعد'}</span>
-          <span class="badge ${mappedCount ? 'ok' : ''}">${mappedCount}/${tbCount || '—'} مصنف</span>
-        </div>
-        <p class="v4-ph-hint">عند اكتمال تصنيف الميزان، تظهر هنا مصفوفة المخاطر تلقائياً بـ ٧ أعمدة: الوصف · المخاطر · التأكيد المتأثر · نوع المخاطر · شدة التحريف (H/M/L) · الاستجابة للمخاطر.</p>
-      </div>`;
-  }
+  // Real v4 implementations (replace placeholder)
+  if (sec.v4Placeholder === "minutes")   return renderMeetingMinutes(eng);
+  if (sec.v4Placeholder === "permanent") return renderPermanentFile(eng);
+  if (sec.v4Placeholder === "risk_assessment") return renderRiskAssessment(eng);
 
   const labels = {
     framework: {
@@ -3076,6 +3944,291 @@ function renderV4Placeholder(sec, eng) {
       ` : ""}
       <p class="v4-ph-hint">سيُعبأ هذا القسم بنموذج تفاعلي مع رفع المستندات في التحديث القادم (24 ساعة).</p>
     </div>
+  `;
+}
+
+/* ============================================================
+   MEETING MINUTES FORM (v4 — sub-section 6)
+   ============================================================ */
+function renderMeetingMinutes(eng) {
+  const data = PLANNING_V4.meetingMinutes;
+  if (!eng.meetingMinutes) eng.meetingMinutes = { meetingDate: "", contactName: "", sections: {}, savedAt: null };
+  const mm = eng.meetingMinutes;
+  const sections = (data.sections || []).slice(0, 7);  // top 7 only (Yazan's Excel layout)
+
+  return `
+    ${renderPaperHeader({ title: "محضر اجتماع مع العميل" })}
+
+    <div class="mm-meta">
+      <div class="field">
+        <label>تاريخ الاجتماع</label>
+        <input type="date" value="${esc(mm.meetingDate)}" oninput="updateMM('meetingDate', this.value)" />
+      </div>
+      <div class="field">
+        <label>اسم جهة الاتصال (رئيس الحسابات)</label>
+        <input type="text" placeholder="اسم رئيس الحسابات في الشركة" value="${esc(mm.contactName)}" oninput="updateMM('contactName', this.value)" />
+      </div>
+    </div>
+
+    <div class="mm-intro">
+      ${esc((data.intro || "").replace("{meeting_date}", mm.meetingDate || "____").replace("{contact_name}", mm.contactName || "____"))}
+    </div>
+
+    ${sections.map((sec, i) => `
+      <div class="mm-section">
+        <h4>${i + 1}. ${esc(sec.heading)}</h4>
+        <textarea class="mm-textarea" placeholder="نص الاستفسار / الملاحظات..." oninput="updateMMSection(${i}, this.value)">${esc((mm.sections && mm.sections[i]) ?? sec.body)}</textarea>
+      </div>
+    `).join("")}
+
+    <div class="mm-signature">
+      <div>
+        <div class="mm-sig-label">أعدها</div>
+        <div class="mm-sig-name">${esc(auditPaperHeader().preparerName) || "—"}</div>
+        <div class="mm-sig-date mono">${esc(nowGregISO())}</div>
+      </div>
+      <div>
+        <div class="mm-sig-label">راجعها</div>
+        <div class="mm-sig-name">${esc(auditPaperHeader().reviewerName) || "—"}</div>
+        <div class="mm-sig-date mono">—</div>
+      </div>
+    </div>
+  `;
+}
+
+function updateMM(field, value) {
+  const eng = currentEngagement(); if (!eng) return;
+  if (!eng.meetingMinutes) eng.meetingMinutes = { sections: {} };
+  eng.meetingMinutes[field] = value;
+  eng.meetingMinutes.savedAt = nowISO();
+  saveState();
+}
+function updateMMSection(idx, value) {
+  const eng = currentEngagement(); if (!eng) return;
+  if (!eng.meetingMinutes) eng.meetingMinutes = { sections: {} };
+  if (!eng.meetingMinutes.sections) eng.meetingMinutes.sections = {};
+  eng.meetingMinutes.sections[idx] = value;
+  eng.meetingMinutes.savedAt = nowISO();
+  saveState();
+}
+
+/* ============================================================
+   PERMANENT FILE FORM (v4 — sub-section 7)
+   ============================================================ */
+function renderPermanentFile(eng) {
+  const data = PLANNING_V4.permanentFile;
+  if (!eng.permanentFile) eng.permanentFile = { entitySize: "", questions: {}, documents: {}, savedAt: null };
+  const pf = eng.permanentFile;
+
+  // Standard CR/articles/tax/licenses docs — always present even if Excel parse missed them
+  const standardDocs = [
+    { id: "pf_cr_main",       label: "السجل التجاري الرئيسي" },
+    { id: "pf_cr_branches",   label: "السجلات التجارية للفروع (إن وجدت)" },
+    { id: "pf_articles",      label: "عقد التأسيس وتعديلاته" },
+    { id: "pf_tax_cert",      label: "شهادة الدخل / الربط الضريبي" },
+    { id: "pf_licenses",      label: "تراخيص النشاط" },
+    { id: "pf_owners_ids",    label: "هويات الشركاء / الملاك" },
+  ];
+
+  // Use Excel-extracted documents if any, fall back to standard list
+  const docs = (data.documents && data.documents.length) ? data.documents.slice(0, 8) : standardDocs;
+
+  // Pull a few key questions from the Excel
+  const questions = (data.questions || []).slice(0, 8);
+
+  return `
+    ${renderPaperHeader({ title: "الملف الدائم — توثيق العميل" })}
+
+    <div class="pf-classify">
+      <h4>تصنيف حجم المنشأة</h4>
+      <p class="subtle mb-12">حدد حجم المنشأة بناءً على الإيرادات + عدد الموظفين. هذا يؤثر على نطاق العمل التدقيقي.</p>
+      <div class="pf-classify-options">
+        ${(data.entityClassification || []).map(c => `
+          <label class="pf-classify-opt ${pf.entitySize === c.size ? "selected" : ""}">
+            <input type="radio" name="pf-entity-size" value="${esc(c.size)}" ${pf.entitySize === c.size ? "checked" : ""} onchange="updatePF('entitySize', this.value)" hidden />
+            <div class="pf-classify-size">${c.size === "large" ? "كبيرة" : c.size === "medium_small" ? "متوسطة / صغيرة" : "صغيرة جداً"}</div>
+            <div class="pf-classify-rule">${esc(c.criteria)}</div>
+          </label>
+        `).join("")}
+      </div>
+    </div>
+
+    <div class="pf-block">
+      <h4>المستندات الرسمية</h4>
+      <p class="subtle mb-12">ارفع كل وثيقة مرة واحدة — تظهر تلقائياً في كل استفسار لاحق يحتاجها.</p>
+      <div class="pf-docs">
+        ${docs.map(d => {
+          const slot = (pf.documents && pf.documents[d.id]) || null;
+          return `
+            <div class="pf-doc">
+              <div class="pf-doc-label">${esc(d.label)}</div>
+              ${slot ? `
+                <div class="pf-doc-meta">
+                  <span class="pf-doc-name">📄 ${esc(slot.filename)}</span>
+                  <button type="button" class="pf-doc-btn" onclick="openAttachment('${esc(slot.attachmentId)}')">عرض</button>
+                  <button type="button" class="pf-doc-btn danger" onclick="detachPF('${esc(d.id)}')">إزالة</button>
+                </div>
+              ` : `
+                <label class="pf-doc-upload">
+                  <input type="file" hidden onchange="attachPF('${esc(d.id)}', this)" />
+                  📎 رفع المستند
+                </label>
+              `}
+            </div>
+          `;
+        }).join("")}
+      </div>
+    </div>
+
+    <div class="pf-block">
+      <h4>أسئلة فهم المنشأة</h4>
+      <div class="pf-questions">
+        ${questions.map((q, i) => {
+          const qid = "pf_q_" + i;
+          const cur = (pf.questions && pf.questions[qid]) || "";
+          return `
+            <div class="pf-question">
+              <div class="pf-q-text">${esc(q.text)}</div>
+              <textarea class="pf-q-textarea" placeholder="إجابتك..." oninput="updatePFQuestion('${esc(qid)}', this.value)">${esc(cur)}</textarea>
+            </div>
+          `;
+        }).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function updatePF(field, value) {
+  const eng = currentEngagement(); if (!eng) return;
+  if (!eng.permanentFile) eng.permanentFile = { questions: {}, documents: {} };
+  eng.permanentFile[field] = value;
+  eng.permanentFile.savedAt = nowISO();
+  saveState();
+  // For radio button selection, re-render parent to update visual state
+  render();
+}
+function updatePFQuestion(qid, value) {
+  const eng = currentEngagement(); if (!eng) return;
+  if (!eng.permanentFile) eng.permanentFile = { questions: {}, documents: {} };
+  if (!eng.permanentFile.questions) eng.permanentFile.questions = {};
+  eng.permanentFile.questions[qid] = value;
+  eng.permanentFile.savedAt = nowISO();
+  saveState();
+}
+function attachPF(docId, inputEl) {
+  attachFileFromInput(inputEl, "pf:" + docId, (attId, meta) => {
+    const eng = currentEngagement(); if (!eng) return;
+    if (!eng.permanentFile) eng.permanentFile = { questions: {}, documents: {} };
+    if (!eng.permanentFile.documents) eng.permanentFile.documents = {};
+    eng.permanentFile.documents[docId] = { attachmentId: attId, filename: meta.filename, at: nowISO() };
+    saveState();
+    render();
+  });
+}
+async function detachPF(docId) {
+  const eng = currentEngagement(); if (!eng) return;
+  const slot = eng.permanentFile?.documents?.[docId];
+  if (slot && slot.attachmentId) {
+    try { await attachStore.remove(slot.attachmentId); } catch (e) {}
+  }
+  if (eng.permanentFile && eng.permanentFile.documents) delete eng.permanentFile.documents[docId];
+  eng.permanentFile.savedAt = nowISO();
+  saveState();
+  render();
+}
+
+/* ============================================================
+   RISK ASSESSMENT auto-populated matrix (v4 — sub-section 8)
+   Filter rows: only categories that appear in current TB mapping.
+   ============================================================ */
+function renderRiskAssessment(eng) {
+  const data = PLANNING_V4.riskMatrix;
+  if (!data) return `<p class="subtle">لا توجد بيانات للمخاطر.</p>`;
+
+  // Which area codes does this client have mapped?
+  const mappedAreas = new Set(Object.values(eng.mappings || {}));
+  const hasTB = (eng.tb || []).length > 0;
+
+  // Filter accounts: include only those whose areaCode is in mappedAreas (or all if no mapping yet)
+  const sectionsFiltered = (data.sections || []).map(sec => ({
+    ...sec,
+    accounts: (sec.accounts || []).filter(a =>
+      !hasTB || !a.areaCode || mappedAreas.has(a.areaCode)
+    ),
+  })).filter(sec => sec.accounts.length);
+
+  const totalRisks = sectionsFiltered.reduce((s, sec) => s + sec.accounts.reduce((a, acc) => a + acc.risks.length, 0), 0);
+
+  if (!eng.riskOverrides) eng.riskOverrides = {};  // {riskKey: {severity, response, notes}}
+
+  return `
+    ${renderPaperHeader({ title: "مصفوفة تقييم المخاطر — ISA 315" })}
+
+    <div class="risk-meta">
+      <div class="risk-meta-row">
+        <span class="badge ${hasTB ? 'ok' : 'warn'}">${hasTB ? `${eng.tb.length} حساب في الميزان` : 'الميزان لم يُستورد بعد — تظهر كل المخاطر'}</span>
+        <span class="badge">${sectionsFiltered.length} قسم</span>
+        <span class="badge">${totalRisks} مخاطرة معروضة</span>
+        <span class="badge gold">${data.sections.reduce((s, sec) => s + sec.accounts.reduce((a, acc) => a + acc.risks.length, 0), 0)} مخاطرة في المصدر</span>
+      </div>
+      <p class="subtle">المخاطر المعروضة تخص فقط الحسابات الموجودة في ميزان هذا العميل. للحصول على مصفوفة كاملة، استورد ميزان المراجعة في مرحلة التنفيذ.</p>
+    </div>
+
+    ${sectionsFiltered.map(sec => `
+      <details class="risk-section" open>
+        <summary>
+          <span class="acc-arrow">▸</span>
+          <span class="risk-sec-name">${esc(sec.name)}</span>
+          <span class="badge">${sec.accounts.reduce((a, acc) => a + acc.risks.length, 0)} مخاطرة</span>
+        </summary>
+        ${sec.accounts.map(acc => `
+          <div class="risk-account">
+            <div class="risk-account-head">
+              <span class="risk-acc-name">${esc(acc.name)}</span>
+              ${acc.areaCode ? `<span class="badge area">${esc(acc.areaCode)}</span>` : ''}
+              <span class="badge">${acc.risks.length}</span>
+            </div>
+            <div class="risk-table-wrap">
+              <table class="risk-table">
+                <thead>
+                  <tr>
+                    <th>الوصف / المخاطر</th>
+                    <th>التأكيد المتأثر</th>
+                    <th>نوع المخاطر</th>
+                    <th>الشدة</th>
+                    <th>الاستجابة</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${acc.risks.map((r, ri) => {
+                    const rkey = (acc.areaCode || acc.name) + ":" + ri;
+                    const ov = eng.riskOverrides[rkey] || {};
+                    const sev = ov.severity || r.severity || "";
+                    return `
+                      <tr>
+                        <td class="risk-desc">${esc(r.description)}</td>
+                        <td>${esc(r.assertion || "—")}</td>
+                        <td>${esc(r.type || "—")}</td>
+                        <td>
+                          <span class="risk-sev sev-${esc(sev || 'na')}">${esc(sev || "—")}</span>
+                        </td>
+                        <td class="risk-response">${esc(ov.response || r.response || "—")}</td>
+                      </tr>
+                    `;
+                  }).join("")}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        `).join("")}
+      </details>
+    `).join("")}
+
+    ${!sectionsFiltered.length ? `
+      <div class="empty-state">
+        <h3>لا توجد مخاطر للعرض</h3>
+        <p class="subtle">استورد ميزان المراجعة وصنّف الحسابات لرؤية المخاطر التي تخص هذا العميل.</p>
+      </div>` : ""}
   `;
 }
 
@@ -3187,20 +4340,13 @@ function renderRows(sheet, eng, sectionScope) {
 
   if (questions.length) {
     html += `<h4 class="mb-8">قائمة الرقابة الداخلية</h4>`;
-    html += `<div class="ic-list">`;
+    html += `<div class="ic-list-v4">`;
     questions.forEach(q => {
       const id = sheet.idx + ":" + q.r;
-      const ans = eng.icAnswers[id] || "";
-      html += `
-      <div class="ic-row">
-        <div class="ic-q">${esc(q.t)}</div>
-        <div class="ic-options">
-          <button class="ic-opt ${ans==='strong'?'selected strong':''}" onclick="setIcAnswer('${id}', 'strong')">يوجد رقابة قوية</button>
-          <button class="ic-opt ${ans==='medium'?'selected medium':''}" onclick="setIcAnswer('${id}', 'medium')">تحتاج تحسين</button>
-          <button class="ic-opt ${ans==='weak'?'selected weak':''}" onclick="setIcAnswer('${id}', 'weak')">ضعيفة</button>
-          <button class="ic-opt ${ans==='na'?'selected':''}" onclick="setIcAnswer('${id}', 'na')">لا ينطبق</button>
-        </div>
-      </div>`;
+      // v4: use new dropdown + attachment component (Yazan's emotional fix from minute 40)
+      // Old "strong"/"medium"/"weak"/"na" string values are gracefully ignored — the new
+      // schema stores an object so the dropdown just shows "اختر إجابة" for legacy data.
+      html += renderIcQuestion(id, q.t, { variant: "yesno" });
     });
     html += `</div>`;
   }
@@ -3504,10 +4650,40 @@ function viewTBImportMapping() {
 
     ${!total ? `
       <div class="import-zone" id="importZone">
-        <h3>اسحب ملف Excel للميزان هنا</h3>
-        <p class="subtle">أو ألصق الأرصدة (CSV) من برنامج المحاسبة الخاص بالعميل. للعرض التجريبي، يمكنك تحميل ميزان جاهز.</p>
-        <div class="toolbar" style="justify-content:center; margin-top:16px;">
-          <button class="btn primary" onclick="loadSampleTB()">تحميل ميزان تجريبي (37 حساب)</button>
+        <h3>استيراد ميزان المراجعة</h3>
+        <p class="subtle mb-16">حمّل قالب CSV، عبئه ببيانات العميل، ثم ارفعه. الأعمدة المطلوبة: <code>code · name · debit · credit</code>.</p>
+
+        <div class="tb-import-steps">
+          <div class="tb-step">
+            <div class="tb-step-num">١</div>
+            <div class="tb-step-body">
+              <h4>تحميل قالب CSV</h4>
+              <p class="subtle">ملف فاضي بأعمدة جاهزة. افتحه بـ Excel، الصق ميزان العميل، احفظه.</p>
+              <button class="btn" onclick="downloadTBTemplate()">⬇ تحميل القالب</button>
+            </div>
+          </div>
+          <div class="tb-step">
+            <div class="tb-step-num">٢</div>
+            <div class="tb-step-body">
+              <h4>رفع الملف بعد التعبئة</h4>
+              <p class="subtle">يقبل CSV (مفصول بفواصل) — قريباً سندعم Excel مباشرة.</p>
+              <label class="btn primary">
+                <input type="file" hidden accept=".csv,text/csv" onchange="uploadTBFile(this)" />
+                ⬆ رفع ملف CSV
+              </label>
+            </div>
+          </div>
+          <div class="tb-step">
+            <div class="tb-step-num">٣</div>
+            <div class="tb-step-body">
+              <h4>أو ميزان تجريبي</h4>
+              <p class="subtle">37 حساب جاهز للعرض التجريبي بتصنيف تلقائي مبدئي.</p>
+              <button class="btn gold" onclick="loadSampleTB()">تحميل ميزان تجريبي</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="toolbar" style="justify-content:center; margin-top:20px;">
           <button class="btn ghost" onclick="navigate('/c/${c.id}')">لاحقاً</button>
         </div>
       </div>
@@ -3617,6 +4793,137 @@ function loadSampleTB() {
   eng.tb = SAMPLE_TB_DATA.map(r => ({ ...r }));
   saveState();
   render();
+}
+
+/* Download a CSV template with the column structure Yazan specified:
+   code, name, debit, credit. Includes a few example rows. */
+function downloadTBTemplate() {
+  const c = currentClient();
+  const filename = (c?.name || "client") + "-ميزان-المراجعة.csv";
+  const header = "code,name,debit,credit";
+  const examples = [
+    "1010,النقد بالصندوق,0,0",
+    "1020,البنك - الحساب الجاري,0,0",
+    "1110,ذمم مدينة تجارية,0,0",
+    "1410,أثاث ومعدات (التكلفة),0,0",
+    "1411,مجمع إهلاك الأثاث والمعدات,0,0",
+    "2010,ذمم دائنة تجارية,0,0",
+    "3010,رأس المال المدفوع,0,0",
+    "4010,الإيرادات,0,0",
+    "5010,تكلفة الإيرادات,0,0",
+    "6010,الرواتب والأجور,0,0",
+  ];
+  const csv = "﻿" + [header, ...examples].join("\n") + "\n";  // BOM for Excel UTF-8
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename; document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+  flashAutoSave("تم تحميل القالب");
+}
+
+/* Read a CSV file uploaded via file input, parse, and populate engagement.tb. */
+function uploadTBFile(inputEl) {
+  const file = inputEl.files && inputEl.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const text = String(e.target.result).replace(/^﻿/, "");
+      const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l);
+      if (lines.length < 2) {
+        alert("الملف فارغ أو لا يحتوي إلا على عناوين الأعمدة.");
+        return;
+      }
+      const header = lines[0].split(",").map(h => h.trim().toLowerCase());
+      const iCode = header.indexOf("code");
+      const iName = header.indexOf("name");
+      const iDr = header.indexOf("debit");
+      const iCr = header.indexOf("credit");
+      if (iCode < 0 || iName < 0 || iDr < 0 || iCr < 0) {
+        alert("الأعمدة المطلوبة: code, name, debit, credit\nالموجود: " + header.join(", "));
+        return;
+      }
+      const rows = [];
+      for (let i = 1; i < lines.length; i++) {
+        const parts = parseCSVLine(lines[i]);
+        if (parts.length < 2) continue;
+        const code = (parts[iCode] || "").trim();
+        const name = (parts[iName] || "").trim();
+        const dr = parseFloat((parts[iDr] || "0").replace(/,/g, "")) || 0;
+        const cr = parseFloat((parts[iCr] || "0").replace(/,/g, "")) || 0;
+        if (!code || !name) continue;
+        rows.push({ code, name, dr, cr });
+      }
+      if (!rows.length) { alert("لم يتم العثور على بيانات حسابات صالحة في الملف."); return; }
+
+      const eng = currentEngagement();
+      eng.tb = rows;
+      eng.mappings = {};
+      eng.mappingsAuto = {};
+      // Auto-suggest based on account name keywords
+      rows.forEach(r => {
+        const auto = autoSuggestArea(r.name);
+        if (auto) {
+          eng.mappings[r.code] = auto;
+          eng.mappingsAuto[r.code] = auto;
+        }
+      });
+      saveState();
+      flashAutoSave("تم استيراد " + rows.length + " حساب");
+      render();
+    } catch (err) {
+      console.error(err);
+      alert("فشل قراءة الملف: " + err.message);
+    }
+  };
+  reader.readAsText(file, "utf-8");
+}
+
+/* Minimal CSV line parser that handles quoted commas. */
+function parseCSVLine(line) {
+  const out = []; let cur = ""; let inq = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (ch === '"') {
+      if (inq && line[i+1] === '"') { cur += '"'; i++; }
+      else inq = !inq;
+    } else if (ch === "," && !inq) {
+      out.push(cur); cur = "";
+    } else { cur += ch; }
+  }
+  out.push(cur);
+  return out;
+}
+
+/* Heuristic: pick an area code based on Arabic keywords in account name. */
+function autoSuggestArea(name) {
+  const n = name || "";
+  const rules = [
+    [/نقد|بنك|صندوق|cash|bank/i,                          "B10"],
+    [/ذمم.*مدين|عملاء|receivable/i,                       "B12"],
+    [/طرف.*علاقة|مرتبط/i,                                "B12-B20"],
+    [/مدفوع.*مقدما|مقدم|أرصدة.*مدين|debit/i,             "B13"],
+    [/مخزون|inventory|بضاع/i,                            "B14"],
+    [/أثاث|معدات|سيارات|عقار|مبنى|أصول.*ثابت|fixed/i,    "B15"],
+    [/أصول.*ملموس|ملموس|intangible/i,                    "B16"],
+    [/ذمم.*دائن|موردين|payable/i,                        "L10"],
+    [/طرف.*علاقة.*دائن/i,                                "L12"],
+    [/مستحق|stuff|أرصدة.*دائن/i,                         "L13"],
+    [/قرض|قروض|loan|تسهيل/i,                            "L20"],
+    [/رأس.*مال|capital/i,                                "E10"],
+    [/أرباح|مدور|retained/i,                             "E20"],
+    [/إيراد|مبيعات|دخل|revenue|sales/i,                  "I10"],
+    [/تكلفة.*إيراد|cogs/i,                              "I12"],
+    [/راتب|أجور|salar|payroll/i,                        "I12-I13"],
+    [/إدار|عموم|admin/i,                                 "I13"],
+    [/بيع|تسويق|توزيع|sales|distribution/i,             "I13-I20"],
+  ];
+  for (const [re, code] of rules) {
+    if (re.test(n)) return code;
+  }
+  return null;
 }
 function applySuggestedMapping() {
   const eng = currentEngagement();
